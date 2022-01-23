@@ -1,19 +1,22 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Moment from 'react-moment';
 import {Link} from 'react-router-dom';
 
-import { dateTimeStringToDate } from '../helpers/functions';
+import Wwww from './new_gig/Wwww';
 
-
-const NewGig = ({gigs, setGigs}) => {
+const NewGig = ({gigs, setGigs, acts, venues, bookings, groups}) => {
   
-  
-  
+  const [formData, setFormData] = useState(null);
+  const [currentPage, setCurrentPage] = useState(0);
+  const formPages = [
+  <Wwww formData={formData} setFormData={setFormData} currentPage={currentPage} setCurrentPage={setCurrentPage} acts={acts} venues={venues}/>
+]
 
   return (
-    <div className="new-list">
+    <div className="new-gig">
       
       <h1>New Gig</h1> 
+      {formPages[currentPage]}
         
     </div>
   )};

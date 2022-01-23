@@ -82,7 +82,7 @@ useEffect(()=>{requestAll()}, [])
         <Routes>
           <Route path = '/' element={gigs ? <Home sortedGigs={sortedGigs} setGigs={setGigs}/> : <Loading />} />
           <Route path = '/gigs' element={gigs ? <GigList sortedGigs={sortedGigs} setGigs={setGigs} /> : <Loading />} />
-          <Route path = '/gigs/new' element = {gigs ? <NewGig gigs={gigs} setGigs={setGigs}/> : <Loading />} />
+          <Route path = '/gigs/new' element = {gigs ? <NewGig gigs={gigs} setGigs={setGigs} acts={acts} venues={venues} bookings={bookings} groups={groups} /> : <Loading />} />
           <Route path = '/gigs/:id' element = {gigs ? <Gig gigs={gigs} setGigs={setGigs}/> : <Loading />} />
 
         </Routes>
