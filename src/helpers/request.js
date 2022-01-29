@@ -13,7 +13,7 @@ class Request {
       post(url, payload){
         console.log("Final payload being sent via POST:")
         console.log(payload);
-        return fetch(url, {
+        return fetch(`${this.baseUrl}${url}`, {
           method: "POST",
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify(payload)
@@ -22,7 +22,7 @@ class Request {
   
       delete(url) {
         console.log(url)
-        return fetch(url, {
+        return fetch(`${this.baseUrl}${url}`, {
           method: "DELETE",
           headers: {'Content-Type': 'application/json'}
         })
@@ -31,7 +31,7 @@ class Request {
       put(url, payload){
         console.log("Final payload being sent via POST:")
         console.log(payload);
-        return fetch(url, {
+        return fetch(`${this.baseUrl}${url}`, {
           method: "PUT",
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify(payload)
