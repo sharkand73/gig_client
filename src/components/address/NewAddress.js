@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-const AddressForm = ({postAddress}) => {
+const NewAddress = ({postAddress}) => {
 
     const {register, handleSubmit} = useForm();
     
     const onSubmit = (data) => {
-        console.log(data);
+        console.log(JSON.stringify(data));
         postAddress(data);
 
     }
@@ -34,4 +34,4 @@ const AddressForm = ({postAddress}) => {
     )
 }
 
-export default AddressForm;
+export default NewAddress;
