@@ -9,7 +9,7 @@ const Home = ({sortedGigs}) => {
   // Use reverse() to put it into chronological order.
   let futureGigs = sortedGigs.reverse().filter((item) => new Date(item.startTime) > now);
   let message;
-  console.log(futureGigs.length);
+
   if (futureGigs.length)
   {
     message = "Your next engagement is:";
@@ -18,7 +18,7 @@ const Home = ({sortedGigs}) => {
   {
     message = "You have no engagements coming up.";
   }
-
+  
 
   return (
     <div className="home">

@@ -10,6 +10,7 @@ import Home from './components/Home';
 import NavBar from './components/NavBar';
 import NewAddress from './components/address/NewAddress';
 import NewDetails from './components/details/NewDetails';
+import NewPerson from './components/person/NewPerson';
 
 import Request from  './helpers/request';
 
@@ -77,25 +78,7 @@ useEffect(()=>{requestAll()}, [])
     }
   }
 
-  const postAddress = (address) => {
-    const request = new Request();
-    request.post('/addresses', address)
-    .then(res => res.json())
-    .then((data) => {
-        console.log('data back from db', data)
-        //setKnowHows([...knowHows, data])
-    })
-  }
 
-    const postDetails = (details) => {
-      const request = new Request();
-      request.post('/details', details)
-      .then(res => res.json())
-      .then((data) => {
-          console.log('data back from db', data)
-          //setKnowHows([...knowHows, data])
-      })
-    }
 
   return (
     <div className="App">
@@ -106,8 +89,9 @@ useEffect(()=>{requestAll()}, [])
           <Route path = '/gigs' element={gigs ? <GigList sortedGigs={sortedGigs} setGigs={setGigs} /> : <Loading />} />
           <Route path = '/gigs/new' element = {gigs ? <NewGig gigs={gigs} setGigs={setGigs} acts={acts} venues={venues} bookings={bookings} groups={groups} /> : <Loading />} />
           <Route path = '/gigs/:id' element = {gigs ? <Gig gigs={gigs} setGigs={setGigs}/> : <Loading />} />
-          <Route path = '/addresses/new' element = {<NewAddress postAddress={postAddress}/>} />
-          <Route path = '/details/new' element = {addresses ? <NewDetails addresses = {addresses} postDetails={postDetails} /> : <Loading />} />
+          <Route path = '/people/new' element = {organisations? <NewPerson organisations={organisations} /> : <Loading />} />
+          {/* <Route path = '/addresses/new' element = {<NewAddress postAddress={postAddress}/>} />
+          <Route path = '/details/new' element = {addresses ? <NewDetails addresses = {addresses} postDetails={postDetails} /> : <Loading />} /> */}
 
         </Routes>
       </Router>
