@@ -13,11 +13,9 @@ const NewPerson = ({organisations}) => {
 
 
     useEffect(() => {
-        if (person) {
-            processAddress();
-        }
+        if (person) {processAddress()}
     }, [person]);
-    
+
     useEffect(() => {
         if (addressId){processDetails()}
     }, [addressId]);
@@ -96,7 +94,7 @@ const NewPerson = ({organisations}) => {
             firstName: person.firstName,
             lastName: person.lastName,
             details: {id: detailsId},
-            organisation: (person.organisation.id == -1)? null : person.organisation.id
+            organisation: (person.organisation.id === -1)? null : person.organisation.id
         };
        postPerson(newPerson); 
        // redirect

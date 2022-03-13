@@ -6,7 +6,7 @@ import GigList from './components/GigList';
 import Gig from './components/Gig';
 import NewGig from './components/NewGig';
 import Loading from './components/Loading';
-import Home from './components/Home';
+import GigsHome from './components/GigsHome';
 import NavBar from './components/NavBar';
 import NewAddress from './components/address/NewAddress';
 import NewDetails from './components/details/NewDetails';
@@ -85,8 +85,8 @@ useEffect(()=>{requestAll()}, [])
       <Router>
         <NavBar />
         <Routes>
-          <Route path = '/' element={gigs ? <Home sortedGigs={sortedGigs} setGigs={setGigs}/> : <Loading />} />
-          <Route path = '/gigs' element={gigs ? <GigList sortedGigs={sortedGigs} setGigs={setGigs} /> : <Loading />} />
+          <Route path = '/' element={gigs ? <GigsHome sortedGigs={sortedGigs} /> : <Loading />} />
+          <Route path = '/gigs' element={gigs ? <GigsHome sortedGigs={sortedGigs}  /> : <Loading />} />
           <Route path = '/gigs/new' element = {gigs ? <NewGig gigs={gigs} setGigs={setGigs} acts={acts} venues={venues} bookings={bookings} groups={groups} /> : <Loading />} />
           <Route path = '/gigs/:id' element = {gigs ? <Gig gigs={gigs} setGigs={setGigs}/> : <Loading />} />
           <Route path = '/people/new' element = {organisations? <NewPerson organisations={organisations} /> : <Loading />} />

@@ -5,10 +5,10 @@ import {Link} from 'react-router-dom';
 import { dateTimeStringToDate } from '../helpers/functions';
 
 
-const GigList = ({sortedGigs}) => {
+const GigList = ({filteredGigs}) => {
   
-  
-  const gigRows = sortedGigs.map((gig, index) => {
+  console.log(filteredGigs.length);
+  const gigRows = filteredGigs.map((gig, index) => {
     
     return (
         <Link to={`/gigs/${gig.id}`} key={index} className="tr">            

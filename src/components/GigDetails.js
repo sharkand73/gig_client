@@ -1,14 +1,9 @@
 import React from 'react';
 import Moment from 'react-moment';
-import {Link, useParams} from 'react-router-dom';
 import { findById, dateTimeStringToDate, dateTimeStringToTime } from '../helpers/functions';
 
 
-const Gig = ({gigs}) => {
-
-      const id  = parseInt(useParams().id);
-      const gig = findById(gigs, id);
-    
+const GigDetails = ({gig}) => {
 
     return (
       <div className = "table">
@@ -49,5 +44,5 @@ const Gig = ({gigs}) => {
     );
 };
 
-export default Gig;
+export default GigDetails;
 
