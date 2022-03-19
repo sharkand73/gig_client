@@ -19,6 +19,10 @@ import Person from './components/persons/Person';
 //import NewPerson from './components/archived/NewPerson';
 
 
+import VenuesHome from './components/venues/VenuesHome';
+import VenueList from './components/venues/VenueList';
+import Venue from './components/venues/Venue';
+
 function App() {
 
   //const baseUrl = 'http://localhost:8080/api';
@@ -86,8 +90,10 @@ useEffect(()=>{requestAll()}, [])
     <div className="App">
       
         <NavBar />
+
         <Routes>
           <Route index element={ gigs ? <GigsHome sortedGigs={sortedGigs} /> : <Loading />} />
+
           <Route path = 'gigs' element={ gigs ? <GigsHome sortedGigs={sortedGigs}  /> : <Loading />} >
             <Route path = ':id' element = { gigs ? <Gig gigs={gigs} setGigs={setGigs}/> : <Loading />} /> 
           </Route> 
@@ -97,6 +103,10 @@ useEffect(()=>{requestAll()}, [])
             <Route path = ':id' element={ persons ? <Person persons={persons}  />  : <Loading />} />
           </Route>
 
+          <Route path = 'venues' element={ venues ? <VenuesHome venues={venues} /> :  <Loading />} >
+            <Route index element = { venues ? <VenueList venues={venues} /> :  <Loading />} />
+            <Route path = ':id' element={ venues ? <Venue venues={venues}  />  : <Loading />} />
+          </Route>
 
         </Routes>
     </div>
