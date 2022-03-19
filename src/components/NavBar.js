@@ -6,12 +6,12 @@ import { findById, dateTimeStringToDate, dateTimeStringToTime } from '../helpers
 const NavBar = () => {
 
     return (
-      <div>
+      <nav>
         <Link to="/gigs">Gigs</Link>
         <Link to="/admin">Admin</Link>
         <Link to="/stats">Stats</Link>
-        <Link to="/other">other</Link>
-      </div>
+        <Link to="/other">Other</Link>
+      </nav>
     );
 };
 

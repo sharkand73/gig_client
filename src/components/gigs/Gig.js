@@ -1,7 +1,7 @@
 import React from 'react';
 import Moment from 'react-moment';
 import {Link, useParams} from 'react-router-dom';
-import { findById, dateTimeStringToDate, dateTimeStringToTime } from '../helpers/functions';
+import { findById, dateTimeStringToDate, dateTimeStringToTime } from '../../helpers/functions';
 
 
 const Gig = ({gigs}) => {

@@ -12,8 +12,8 @@ const GigsHome = ({sortedGigs}) => {
   // Use reverse() to put it into chronological order.
   const futureGigs = sortedGigs.reverse().filter((item) => new Date(item.startTime) >= now);
   const pastGigs = sortedGigs.reverse().filter((item) => new Date(item.startTime) < now);
-  const openGigs = pastGigs.filter((item) => item.booking.status == "OPEN");
-  const closedGigs = pastGigs.filter((item) => item.booking.status == "CLOSED");
+  const openGigs = pastGigs.filter((item) => item.booking.status === "OPEN");
+  const closedGigs = pastGigs.filter((item) => item.booking.status === "CLOSED");
 
   const gigPages = {
     'next': <GigNext filteredGigs = {futureGigs} />,

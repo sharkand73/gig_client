@@ -1,18 +1,22 @@
 import './App.css';
 import React, {useState, useEffect} from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
-import GigList from './components/GigList';
-import Gig from './components/Gig';
-import NewGig from './components/NewGig';
-import Loading from './components/Loading';
-import GigsHome from './components/GigsHome';
-import NavBar from './components/NavBar';
-import NewAddress from './components/address/NewAddress';
-import NewDetails from './components/details/NewDetails';
-import NewPerson from './components/person/NewPerson';
+import { Route, Routes } from 'react-router-dom';
 
 import Request from  './helpers/request';
+
+import Loading from './components/Loading';
+import NavBar from './components/NavBar';
+
+import Gig from './components/gigs/Gig';
+import GigsHome from './components/gigs/GigsHome';
+//import NewGig from './components/NewGig';
+
+import PersonsHome from './components/persons/PersonsHome';
+import PersonList from './components/persons/PersonList';
+import Person from './components/persons/Person';
+//import NewAddress from './components/addresses/NewAddress';
+//import NewDetails from './components/details/NewDetails';
+//import NewPerson from './components/archived/NewPerson';
 
 
 function App() {
@@ -78,23 +82,23 @@ useEffect(()=>{requestAll()}, [])
     }
   }
 
-
-
   return (
     <div className="App">
-      <Router>
+      
         <NavBar />
         <Routes>
-          <Route path = '/' element={gigs ? <GigsHome sortedGigs={sortedGigs} /> : <Loading />} />
-          <Route path = '/gigs' element={gigs ? <GigsHome sortedGigs={sortedGigs}  /> : <Loading />} />
-          <Route path = '/gigs/new' element = {gigs ? <NewGig gigs={gigs} setGigs={setGigs} acts={acts} venues={venues} bookings={bookings} groups={groups} /> : <Loading />} />
-          <Route path = '/gigs/:id' element = {gigs ? <Gig gigs={gigs} setGigs={setGigs}/> : <Loading />} />
-          <Route path = '/people/new' element = {organisations? <NewPerson organisations={organisations} /> : <Loading />} />
-          {/* <Route path = '/addresses/new' element = {<NewAddress postAddress={postAddress}/>} />
-          <Route path = '/details/new' element = {addresses ? <NewDetails addresses = {addresses} postDetails={postDetails} /> : <Loading />} /> */}
+          <Route index element={ gigs ? <GigsHome sortedGigs={sortedGigs} /> : <Loading />} />
+          <Route path = 'gigs' element={ gigs ? <GigsHome sortedGigs={sortedGigs}  /> : <Loading />} >
+            <Route path = ':id' element = { gigs ? <Gig gigs={gigs} setGigs={setGigs}/> : <Loading />} /> 
+          </Route> 
+      
+          <Route path = 'people' element={ persons ? <PersonsHome persons={persons} /> :  <Loading />} >
+            <Route index element = { persons ? <PersonList persons={persons} /> :  <Loading />} />
+            <Route path = ':id' element={ persons ? <Person persons={persons}  />  : <Loading />} />
+          </Route>
+
 
         </Routes>
-      </Router>
     </div>
 
   )
