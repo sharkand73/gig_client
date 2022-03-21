@@ -1,11 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { sortObjectsAlphabetically } from '../../helpers/functions';
 
 const PersonList = ({ persons }) => {
   
+  const sortedPersons = sortObjectsAlphabetically(persons, 'lastName');
+
   let personRows = {};
   if (persons){
-  personRows = persons.map((person, index) => {
+  personRows = sortedPersons.map((person, index) => {
     
     return (
         <Link to={person.id.toString()} key={index} className="tr">            

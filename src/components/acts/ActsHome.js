@@ -1,16 +1,16 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 
-const PersonsHome = ({persons}) => {
+const ActsHome = ({ acts }) => {
 
   return (
     <>
       <nav>
-        <Link to = '/people' >All</Link>
+        <Link to = '/acts' >All</Link>
       </nav> 
       <Outlet />
     </>
   )
 }
 
-export default PersonsHome;
+export default ActsHome;

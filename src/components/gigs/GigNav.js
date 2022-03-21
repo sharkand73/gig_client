@@ -1,7 +1,4 @@
 import React from 'react';
-import {Link } from 'react-router-dom';
-import { findById, dateTimeStringToDate, dateTimeStringToTime } from '../../helpers/functions';
-
 
 const GigNav = ({setGigsPage}) => {
 

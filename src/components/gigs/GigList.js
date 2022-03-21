@@ -1,5 +1,4 @@
 import React from 'react';
-import Moment from 'react-moment';
 import {Link} from 'react-router-dom';
 
 import { dateTimeStringToDate } from '../../helpers/functions';
@@ -7,7 +6,7 @@ import { dateTimeStringToDate } from '../../helpers/functions';
 
 const GigList = ({filteredGigs}) => {
   
-  console.log(filteredGigs.length);
+  //console.log(filteredGigs.length);
   const gigRows = filteredGigs.map((gig, index) => {
     
     return (

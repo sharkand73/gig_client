@@ -7,9 +7,15 @@ import Request from  './helpers/request';
 import Loading from './components/Loading';
 import NavBar from './components/NavBar';
 
-import Gig from './components/gigs/Gig';
+
 import GigsHome from './components/gigs/GigsHome';
+import GigList from './components/gigs/GigList';
+import Gig from './components/gigs/Gig';
 //import NewGig from './components/NewGig';
+
+import GroupsHome from './components/groups/GroupsHome';
+import GroupList from './components/groups/GroupList';
+import Group from './components/groups/Group';
 
 import PersonsHome from './components/persons/PersonsHome';
 import PersonList from './components/persons/PersonList';
@@ -18,6 +24,9 @@ import Person from './components/persons/Person';
 //import NewDetails from './components/details/NewDetails';
 //import NewPerson from './components/archived/NewPerson';
 
+import ActsHome from './components/acts/ActsHome';
+import ActList from './components/acts/ActList';
+import Act from './components/acts/Act';
 
 import VenuesHome from './components/venues/VenuesHome';
 import VenueList from './components/venues/VenueList';
@@ -108,6 +117,15 @@ useEffect(()=>{requestAll()}, [])
             <Route path = ':id' element={ venues ? <Venue venues={venues}  />  : <Loading />} />
           </Route>
 
+          <Route path = 'bookings' element={ groups ? <GroupsHome groups={groups} /> :  <Loading />} >
+            <Route index element = { groups ? <GroupList groups={groups} /> :  <Loading />} />
+            <Route path = ':id' element={ groups ? <Group groups={groups}  />  : <Loading />} />
+          </Route>
+
+          <Route path = 'acts' element={ acts ? <ActsHome acts={acts} /> :  <Loading />} >
+            <Route index element = { acts ? <ActList acts={acts} /> :  <Loading />} />
+            <Route path = ':id' element={ acts ? <Group acts={acts}  />  : <Loading />} />
+          </Route>
         </Routes>
     </div>
 
