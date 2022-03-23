@@ -103,8 +103,9 @@ useEffect(()=>{requestAll()}, [])
         <Routes>
           <Route index element={ gigs ? <GigsHome sortedGigs={sortedGigs} /> : <Loading />} />
 
-          <Route path = 'gigs' element={ gigs ? <GigsHome sortedGigs={sortedGigs}  /> : <Loading />} >
-            <Route path = ':id' element = { gigs ? <Gig gigs={gigs} setGigs={setGigs}/> : <Loading />} /> 
+          <Route path = 'gigs' element={ gigs ? <GigsHome filteredGigs={sortedGigs} /> : <Loading />} >
+            <Route index element = { gigs? <GigList filteredGigs = {sortedGigs} /> : <Loading />} />
+            <Route path = ':id' element = { gigs ? <Gig gigs={gigs} /> : <Loading />} /> 
           </Route> 
       
           <Route path = 'people' element={ persons ? <PersonsHome persons={persons} /> :  <Loading />} >
@@ -124,7 +125,7 @@ useEffect(()=>{requestAll()}, [])
 
           <Route path = 'acts' element={ acts ? <ActsHome acts={acts} /> :  <Loading />} >
             <Route index element = { acts ? <ActList acts={acts} /> :  <Loading />} />
-            <Route path = ':id' element={ acts ? <Group acts={acts}  />  : <Loading />} />
+            <Route path = ':id' element={ acts ? <Act acts={acts}  />  : <Loading />} />
           </Route>
         </Routes>
     </div>

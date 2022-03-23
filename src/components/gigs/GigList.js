@@ -8,13 +8,17 @@ const GigList = ({filteredGigs}) => {
   
   //console.log(filteredGigs.length);
   const gigRows = filteredGigs.map((gig, index) => {
+
+    const processFee = (fee) => {
+      return fee === 0 ? "-----" : "£"+fee ;
+    }
     
     return (
         <Link to={`/gigs/${gig.id}`} key={index} className="tr">            
           <div className="td">{dateTimeStringToDate(gig.startTime)}</div>
           <div className="td">{gig.act.name}</div>
           <div className="td">{gig.venue.name}</div>
-          <div className="td">£{gig.booking.fee}</div>
+          <div className="td money">{processFee(gig.booking.fee)}</div>
         </Link>
     );
   });
