@@ -16,11 +16,9 @@ const GigNext = ({filteredGigs}) => {
     return (
       <div className="gig">
       <h1>{message}</h1> 
-      {filteredGigs.length ? <GigDetails gig={filteredGigs[0]} /> : null}
-      
+      {filteredGigs.length ? <GigDetails gig={filteredGigs[0]} /> : null}      
       </div>
     );
 };
 
 export default GigNext;
-

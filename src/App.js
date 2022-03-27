@@ -11,6 +11,7 @@ import NavBar from './components/NavBar';
 import GigsHome from './components/gigs/GigsHome';
 import GigList from './components/gigs/GigList';
 import Gig from './components/gigs/Gig';
+import GigNext from './components/gigs/GigNext';
 //import NewGig from './components/NewGig';
 
 import GroupsHome from './components/groups/GroupsHome';
@@ -89,11 +90,19 @@ function App() {
 useEffect(()=>{requestAll()}, [])
 
   let sortedGigs = gigs;
+  let futureGigs;
   if (gigs){
     if (gigs.length > 1) {
-      sortedGigs = gigs.slice().sort((gig1, gig2) => (new Date(gig2.startTime) - new Date(gig1.startTime)));   
+      sortedGigs = gigs.slice().sort((gig1, gig2) => (new Date(gig2.startTime) - new Date(gig1.startTime)));
+      const now = new Date();
+      // The array sortedGigs is in reverse chronological order.
+      // Use reverse() to put it into chronological order.
+      const tempGigs = sortedGigs;
+      futureGigs = tempGigs.reverse().filter((item) => new Date(item.startTime) >= now);
     }
   }
+
+  
 
   return (
     <div className="App">
@@ -101,7 +110,7 @@ useEffect(()=>{requestAll()}, [])
         <NavBar />
 
         <Routes>
-          <Route index element={ gigs ? <GigsHome sortedGigs={sortedGigs} /> : <Loading />} />
+          <Route index element={ gigs ? <GigNext filteredGigs={futureGigs} /> : <Loading />} />
 
           <Route path = 'gigs' element={ gigs ? <GigsHome filteredGigs={sortedGigs} /> : <Loading />} >
             <Route index element = { gigs? <GigList filteredGigs = {sortedGigs} /> : <Loading />} />

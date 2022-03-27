@@ -3,6 +3,8 @@ import { Link, Outlet } from 'react-router-dom';
 
 const ActsHome = ({ acts }) => {
 
+// remove { acts }?  
+
   return (
     <>
       <nav>
