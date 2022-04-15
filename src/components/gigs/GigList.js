@@ -10,15 +10,19 @@ const GigList = ({filteredGigs}) => {
   const gigRows = filteredGigs.map((gig, index) => {
 
     const processFee = (fee) => {
-      return fee === 0 ? "-----" : "£"+fee ;
+      return fee === 0 ? "FREE" : "£"+fee.toFixed(2) ;
     }
     
     return (
-        <Link to={`/gigs/${gig.id}`} key={index} className="tr">            
-          <div className="td">{dateTimeStringToDate(gig.startTime)}</div>
-          <div className="td">{gig.act.name}</div>
-          <div className="td">{gig.venue.name}</div>
-          <div className="td money">{processFee(gig.booking.fee)}</div>
+        <Link to={`/gigs/${gig.id}`} key={index}> 
+        <div className="ticket">
+        <div className="text">   
+          <div className="act">{gig.act.name}</div>        
+          <div className="date">{dateTimeStringToDate(gig.startTime)}</div>
+          <div className="venue">{gig.venue.name}</div>
+          <div className="money">{processFee(gig.booking.fee)}</div>
+        </div>
+        </div>
         </Link>
     );
   });
@@ -27,7 +31,7 @@ const GigList = ({filteredGigs}) => {
     <div className="gig-list">
       
       <h1>Engagements</h1> 
-      <div className="table">      
+      <div className="gig-list">      
         {gigRows}       
       </div>     
     </div>

@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+
+body{
+  background-color:aliceblue;
+  color: black;
+}
+
 .table { 
   display: table;
   
@@ -29,9 +36,44 @@
 
 a {
   text-decoration: none; 
+  color: inherit;
 }
 
 a:visited {
   text-decoration: none;
   color: inherit;
 }
+
+
+.gig-list {
+  width: 60%;
+}
+
+.ticket {
+  background-color: white;
+  color: #3C3C3C;
+  width: 100%;
+  margin: 15px 0px 25px 40px; 
+  box-shadow: 5px 5px #aaa;
+}
+
+.ticket:hover{
+  box-shadow: none;
+  transform: translate(5px,5px);
+}
+
+.ticket > .text{
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  margin: 15px 10px 15px 30px; 
+}
+
+.ticket > .text > .act{
+  font-size: 120%;
+  font-weight: 900;
+} 
+.ticket > .text > .date, .ticket > .text > .venue {
+  font-weight: 400;
+  font-size: 100%;
+  margin-left: 10px;
+} 

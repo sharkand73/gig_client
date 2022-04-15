@@ -3,7 +3,8 @@ import Moment from 'react-moment';
 export const dateTimeStringToDate = (dateTimeString) => {
     const dateTimeObject = new Date(dateTimeString);
     return (
-      <Moment format="DD/MM/YYYY">{dateTimeObject}</Moment>
+      <Moment format="dddd Do MMMM YYYY">{dateTimeObject}</Moment>
+      //<Moment format="DD/MM/YYYY">{dateTimeObject}</Moment>
     );
 };
 

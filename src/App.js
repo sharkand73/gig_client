@@ -93,7 +93,7 @@ useEffect(()=>{requestAll()}, [])
   let futureGigs;
   if (gigs){
     if (gigs.length > 1) {
-      sortedGigs = gigs.slice().sort((gig1, gig2) => (new Date(gig2.startTime) - new Date(gig1.startTime)));
+      sortedGigs = gigs.slice().sort((gig1, gig2) => (new Date(gig1.startTime) - new Date(gig2.startTime)));
       const now = new Date();
       // The array sortedGigs is in reverse chronological order.
       // Use reverse() to put it into chronological order.
