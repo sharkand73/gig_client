@@ -2,18 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Request from  '../../helpers/request';
 
-const NewPerson = ({organisations}) => {
+const NewPerson = ({organisations, currentPerson}) => {
 
     //console.log(organisations);
-
-    const [person, setPerson] = useState(null);
+    
+    const [editing, setEditing] = useState(false);
+    const [person, setPerson] = useState(currentPerson);
     const [addressId, setAddressId] = useState(0);
     const [detailsId, setDetailsId] = useState(0);
     const {register, handleSubmit} = useForm();
 
 
     useEffect(() => {
-        if (person) {processAddress()}
+        if (addressId) {processAddress()}
     }, [person]);
 
     useEffect(() => {
@@ -94,12 +95,11 @@ const NewPerson = ({organisations}) => {
             firstName: person.firstName,
             lastName: person.lastName,
             details: {id: detailsId},
-            organisation: (person.organisation.id === -1)? null : person.organisation.id
+            organisation: (person.organisation.id)? person.organisation.id : null
         };
        postPerson(newPerson); 
        // redirect
     }
-
 
     const organisationOptions = organisations.map((org) => (
         <option key={org.id} value={org.id}>
@@ -107,43 +107,92 @@ const NewPerson = ({organisations}) => {
         </option>
     ));
 
+    const toggleEdit = () => {
+        setEditing(!editing);
+    }
+
+    const getFormButtonClass = (status) => {
+        if (status){
+            return "form-button disabled"
+        }
+        else {
+            return "form-button enabled"
+        }
+    }
+
     return (
-       <form onSubmit={handleSubmit(onSubmit)} >
-           <label htmlFor='firstName'>First Name</label>
-           <input type='text' {...register('firstName')} />
-           <label htmlFor='lasttName'>Last Name</label>
-           <input type='text' {...register('lastName')} />
-           <label htmlFor='addressLine1'>Address Line 1</label>
-           <input type='text' {...register('addressLine1')} />
-           <label htmlFor='addressLine2'>Address Line 2</label>
-           <input type='text' {...register('addressLine2')} />
-           <label htmlFor='city' >City</label>
-           <input type='text' {...register('city')} />
-           <label htmlFor='addressLine1'>Region</label>
-           <input type='text' {...register('region')} />
-           <label htmlFor='postcode'>Postcode</label>
-           <input type='text' {...register('postcode')} />
-           <label htmlFor='country'>country</label>
-           <select {...register('country')} >
-               <option value = 'Scotland'>Scotland</option>
-               <option value = 'England'>England</option>
-               <option value = 'Wales'>Wales</option>
-            </select>
-            <label htmlFor='organisation'>Organisation</label>
-            <select {...register('organisation.id')} >
-                <option key={-1} value={-1}>None</option>
-                {organisationOptions}
-            </select>
-           <label htmlFor='mobile'>Mobile</label>
-           <input type='text' {...register('mobile')} />
-           <label htmlFor='altPhone' >Alt. Phone</label>
-           <input type='text' {...register('altPhone')} />
-           <label htmlFor='email'>Email</label>
-           <input type='text' {...register('email')} />
-           <label htmlFor='postcode'>Alt. Email</label>
-           <input type='text' {...register('altEmail')} />
-            <input type='submit' value='Submit' />           
-       </form> 
+        <div className = 'form-container'>
+            <div className = 'form-top-line'>                
+                <button onClick={toggleEdit} className={`${getFormButtonClass(editing)} edit`}>Edit</button>                                
+                <button onClick={toggleEdit} className={`${getFormButtonClass(!editing)} cancel`}>Cancel</button>                
+            </div>
+            <div>
+                <form onSubmit={handleSubmit(onSubmit)} >
+                    <div>
+                        <label htmlFor='firstName'>First Name</label>
+                        <input type='text' {...register('firstName')} required />
+                    </div>
+                    <div>
+                        <label htmlFor='lasttName'>Last Name</label>
+                        <input type='text' {...register('lastName')} required />
+                    </div>
+                    <div>
+                        <label htmlFor='addressLine1'>Address Line 1</label>
+                        <input type='text' {...register('addressLine1')} />
+                    </div>
+                    <div>
+                        <label htmlFor='addressLine2'>Address Line 2</label>
+                        <input type='text' {...register('addressLine2')} />
+                    </div>
+                    <div>
+                        <label htmlFor='city' >City</label>
+                        <input type='text' {...register('city')} />
+                    </div>
+                    <div>
+                        <label htmlFor='addressLine1'>Region</label>
+                        <input type='text' {...register('region')} />
+                    </div>
+                    <div>
+                        <label htmlFor='postcode'>Postcode</label>
+                        <input type='text' {...register('postcode')} />
+                    </div>
+                    <div>
+                        <label htmlFor='country'>Country</label>
+                        <select {...register('country')} >
+                        <option value = 'Scotland'>Scotland</option>
+                        <option value = 'England'>England</option>
+                        <option value = 'Wales'>Wales</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label htmlFor='organisation'>Organisation</label>
+                        <select {...register('organisation.id')} >
+                            <option key={0} value={0}>None</option>
+                            {organisationOptions}
+                        </select>
+                    </div>
+                    <div>
+                        <label htmlFor='mobile'>Mobile</label>
+                        <input type='text' {...register('mobile')} />
+                    </div>
+                    <div>
+                        <label htmlFor='altPhone' >Alt. Phone</label>
+                        <input type='text' {...register('altPhone')} />
+                    </div>
+                    <div>
+                        <label htmlFor='email'>Email</label>
+                        <input type='text' {...register('email')} />
+                    </div>
+                    <div>
+                        <label htmlFor='postcode'>Alt. Email</label>
+                        <input type='text' {...register('altEmail')} />
+                    </div>
+                    <div>
+                        <input type='submit' value='Submit' />  
+                    </div>         
+                </form> 
+            </div>
+        </div>
     )
 }
 

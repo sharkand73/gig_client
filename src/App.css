@@ -1,8 +1,48 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald');
 
 body{
-  background-color:aliceblue;
+  background-color:cadetblue;
   color: black;
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+.App {
+  background-color:aliceblue;
+  padding: 5%;
+  justify-self: center;
+  min-height: 1000px;
+}
+
+.Nav {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 25px;
+  padding-right: 10%;
+  padding-left: 10%;
+}
+
+.Nav button {
+  border-color: red;
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 12px;
+  font-size: 14pt;
+  font-weight: bold;
+  padding: 4px;
+}
+
+.Nav button:hover {
+  background-color: #ffc;
+  transform: scale(1.2);
+}
+
+.selected-nav {
+  background-color: #ffc;
+}
+
+.unselected-nav {
+  background-color: #fff;
 }
 
 .table { 
@@ -46,26 +86,40 @@ a:visited {
 
 
 .gig-list {
-  width: 60%;
+  width: 70%;
 }
 
 .ticket {
-  background-color: white;
+  display: inline-block;
   color: #3C3C3C;
   width: 100%;
   margin: 15px 0px 25px 40px; 
-  box-shadow: 5px 5px #aaa;
+  box-shadow: 5px 5px 5px 5px #aaa;
+}
+
+.normal-gig {
+  background-color: white;
+}
+
+.next-gig {
+  background-color: #ffc;
 }
 
 .ticket:hover{
-  box-shadow: none;
+  /* box-shadow: none; */
   transform: translate(5px,5px);
+  background-color: #dde;
 }
 
 .ticket > .text{
+
+  width: 75%;
   font-family: 'Oswald', sans-serif;
   text-transform: uppercase;
-  margin: 15px 10px 15px 30px; 
+  margin: 0px 10px 0px 30px; 
+  padding-right: 5px;
+  border-right-style: dashed;
+  border-right-color: #ddd;
 }
 
 .ticket > .text > .act{
@@ -73,7 +127,48 @@ a:visited {
   font-weight: 900;
 } 
 .ticket > .text > .date, .ticket > .text > .venue {
-  font-weight: 400;
+  font-weight: 300;
   font-size: 100%;
   margin-left: 10px;
 } 
+
+.ticket > .money {
+  margin-right: 5px;
+}
+.ticket > .stub {
+  width: 25%;
+}
+
+
+.form-container {
+  width: 50%;
+  margin-top: 30px;
+  background-color: white;
+}
+
+.form-button {
+  float: right;
+} 
+
+.edit {
+ background-color: lightgreen;
+}
+
+.cancel {
+  background-color: rgb(243, 109, 109);
+}
+
+/* .enabled {
+  background-color:;
+} */
+
+.disabled {
+  background-color: lightgray;
+}
+
+form > div > label {
+  width: 30%; 
+}
+form > div > input {
+  width: 30%;
+}
