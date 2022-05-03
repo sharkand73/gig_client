@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { findById } from '../../helpers/functions';
 import GigDetails from './GigDetails';
+import Back from '../buttons/Back';
 import Error from '../Error';
 
 
@@ -17,7 +18,10 @@ const Gig = ({gigs}) => {
       };
 
     return (
+    <>
       <GigDetails gig = {gig} />
+      <Back />
+    </>
     );
 };
 

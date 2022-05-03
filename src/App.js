@@ -76,16 +76,25 @@ useEffect(()=>{requestAll()}, [])
 
   return (
       <MainContainer addresses={addresses}
+                    setAddresses={setAddresses}
                     details={details}
+                    setDetails={setDetails}
                     organisations={organisations}
+                    setOrganisations={setOrganisations}
                     persons={persons}
+                    setPersons={setPersons}
                     venues={venues}
+                    setVenues={setVenues}
                     acts={acts}
+                    setActs={setActs}
                     groups={groups}
+                    setGroups={setGroups}
                     bookings={bookings}
+                    setBookings={setBookings}
                     gigs={gigs}
+                    setGigs={setGigs}
                     messages={messages}
-      />
+                    setMessages={setMessages} />
   )
 }
 

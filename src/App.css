@@ -22,14 +22,18 @@ body{
   padding-left: 10%;
 }
 
-.Nav button {
-  border-color: red;
+button {
+  background-color: white;
   border-style: solid;
   border-width: 3px;
   border-radius: 12px;
   font-size: 14pt;
   font-weight: bold;
   padding: 4px;
+}
+
+.Nav button {
+  border-color: red;
 }
 
 .Nav button:hover {
@@ -86,7 +90,7 @@ a:visited {
 
 
 .gig-list {
-  width: 70%;
+  width: 80%;
 }
 
 .ticket {
@@ -169,6 +173,16 @@ a:visited {
 form > div > label {
   width: 30%; 
 }
+
 form > div > input {
   width: 30%;
+}
+
+.back {
+  border-color: lightgreen;
+}
+
+.back:hover {
+  background-color: #ffc;
+  transform: scale(1.2);
 }

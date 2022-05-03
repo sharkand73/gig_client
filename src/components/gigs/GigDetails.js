@@ -16,7 +16,7 @@ const GigDetails = ({gig}) => {
           <div className = "td">Venue:</div><div className = "td">{gig.venue.name}</div>
         </div>
         <div className = "tr">
-          <div className = "td">Type:</div><div className = "td">{gig.rehearsal ? "REHEARSAL" : "PERFORMANCE"}</div>
+          <div className = "td">Type:</div><div className = "td">{gig.gigType}</div>
         </div>
         <div className = "tr">
           <div>Arrival Time:</div><div className = "td">{dateTimeStringToTime(gig.arrivalTime)}</div>
