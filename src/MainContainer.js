@@ -29,6 +29,11 @@ import VenueList from './components/venues/VenueList';
 import Venue from './components/venues/Venue';
 import VenueNew from './components/venues/VenueNew';
 
+import OrganisationsHome from './components/organisations/OrganisationsHome';
+import OrganisationList from './components/organisations/OrganisationList';
+import Organisation from './components/organisations/Organisation';
+import OrganisationNew from './components/organisations/OrganisationNew';
+
 const MainContainer = ({ addresses, details, organisations, persons, venues, acts, groups, bookings, gigs, 
                         setAddresses, setDetails, setOrganisations, setPersons, setVenues, setGroups, setBooking, setGigs}) => {
 
@@ -60,13 +65,13 @@ const MainContainer = ({ addresses, details, organisations, persons, venues, act
       
           <Route path = 'people' element={ persons ? <PersonsHome persons={persons} /> :  <Loading />} >
             <Route index element = { persons ? <PersonList persons={persons} /> :  <Loading />} />
-            <Route path = 'new' element={ organisations && persons ? <PersonNew organisations={organisations} setAddresses={setAddresses} setDetails={setDetails} setPersons={setPersons}  />  : <Loading />} />
+            <Route path = 'new' element={ organisations && persons && details ? <PersonNew organisations={organisations} setAddresses={setAddresses} setDetails={setDetails} setPersons={setPersons}  />  : <Loading />} />
             <Route path = ':id' element={ persons ? <Person persons={persons}  />  : <Loading />} />         
           </Route>
 
           <Route path = 'venues' element={ venues ? <VenuesHome venues={venues} /> :  <Loading />} >
             <Route index element = { venues ? <VenueList venues={venues} /> :  <Loading />} />
-            <Route path = 'new' element={ venues ? <VenueNew  setAddresses={setAddresses} venues={venues} setVenues={setVenues} />  : <Loading />} />
+            <Route path = 'new' element={ venues && addresses ? <VenueNew  addresses={addresses} setAddresses={setAddresses} venues={venues} setVenues={setVenues} />  : <Loading />} />
             <Route path = ':id' element={ venues ? <Venue venues={venues}  />  : <Loading />} />
           </Route>
 
@@ -79,7 +84,15 @@ const MainContainer = ({ addresses, details, organisations, persons, venues, act
             <Route index element = { acts ? <ActList acts={acts} /> :  <Loading />} />
             <Route path = ':id' element={ acts ? <Act acts={acts}  />  : <Loading />} />
           </Route>
+
+          <Route path = 'organisations' element={ organisations ? <OrganisationsHome organisations={organisations} /> :  <Loading />} >
+            <Route index element = { organisations ? <OrganisationList organisations={organisations} /> :  <Loading />} />
+            <Route path = 'new' element={ organisations && addresses ? <OrganisationNew  addresses={addresses} setAddresses={setAddresses} organisations={organisations} setOrganisations={setOrganisations} />  : <Loading />} />
+            <Route path = ':id' element={ organisations ? <Organisation organisations={organisations}  />  : <Loading />} />
+          </Route>
         </Routes>
+
+
     </div>
 
   )

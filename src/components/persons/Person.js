@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { findById } from '../../helpers/functions';
 
+import Back from '../buttons/Back';
 import Error from '../Error';
 
 
@@ -22,7 +23,7 @@ const Person = ({persons}) => {
     return (
       <div className = "table">
         <div className = "tr">
-          <div className = "td">First Name:</div><div className = "td">{person.FirstName}</div>
+          <div className = "td">First Name:</div><div className = "td">{person.firstName}</div>
         </div>
         <div className = "tr">
           <div className = "td">Last Name:</div><div className = "td">{person.lastName}</div>
@@ -36,6 +37,7 @@ const Person = ({persons}) => {
         <div className = "tr">
           <div>Email:</div><div className = "td">{person.details.email}</div>
         </div>
+        <Back />
       </div>
     );
 };

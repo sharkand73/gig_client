@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import {Link } from 'react-router-dom';
-import { getNavItemClass } from '../helpers/navHelper';
+import { getNavItemClass, navItems } from '../helpers/navHelper';
 
 const NavBar = () => {
 
     const [selectedNavItem, setSelectedNavItem] = useState('home');
-
-    const navItems = ['home', 'gigs', 'bookings', 'acts', 'venues', 'people'];
 
     const navMenu = navItems.map((navItem, index) => (
       <div key={index}> 

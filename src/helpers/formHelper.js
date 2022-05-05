@@ -36,6 +36,12 @@ export const emptyVenue = {
     id: null
 };
 
+export const emptyOrganisation = {
+    name: "",
+    address: null,
+    id: null
+};
+
 export const refObject = (id) => ({
     id: id
 });

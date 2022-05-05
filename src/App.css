@@ -14,8 +14,9 @@ body{
   min-height: 1000px;
 }
 
-.Nav {
+.Nav {  
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
   margin-bottom: 25px;
   padding-right: 10%;
@@ -184,5 +185,4 @@ form > div > input {
 
 .back:hover {
   background-color: #ffc;
-  transform: scale(1.2);
 }

@@ -34,8 +34,9 @@ const PersonNew = ({organisations, addresses, setAddresses, details, setDetails,
         .then((data) => {
             console.log('data back from db', data);
             setDetailsData({...detailsData, address: {id: data.id}});
+            setAddressData(data);
+            setAddresses([...addresses, addressData]);
             setSendDetails(true);
-            setAddresses([...addresses, data])
         })
       }
     
@@ -46,8 +47,9 @@ const PersonNew = ({organisations, addresses, setAddresses, details, setDetails,
         .then((data) => {
             console.log('data back from db', data);
             setPersonData({...personData, details: {id: data.id}});
+            // fix this stuff (see organisations)
+            setDetails([...details, data]);
             setSendPerson(true);
-            setDetails([...details, data])
         })
     }
 

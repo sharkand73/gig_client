@@ -20,6 +20,9 @@ export const findById = (objList, id) => {
   }
 
 export const sortObjectsAlphabetically = (objList, property) => {
+  if (!objList || objList.length <= 1){
+    return objList
+  }
   let tempList = [...objList];
   tempList.sort((a, b) => {
     let aComparison = a[property];

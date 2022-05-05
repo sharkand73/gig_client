@@ -1,52 +1,54 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import Request from  '../../helpers/request';
-import { emptyAddress, emptyVenue, countryOptions, venueOptions } from '../../helpers/formHelper';
+import { emptyAddress, emptyOrganisation, countryOptions } from '../../helpers/formHelper';
 
 
 
-const VenueNew = ({venues, setVenues, addresses, setAddresses }) => {
+const OrganisationNew = ({organisations, setOrganisations, addresses, setAddresses }) => {
     
     emptyAddress.country = "Scotland";
 
     const [addressData, setAddressData] = useState(emptyAddress);
-    const [venueData, setVenueData] = useState(emptyVenue);
-    const [sendVenue, setSendVenue] = useState(false);
-    const [finalVenue, setFinalVenue] = useState(null);
+    const [organisationData, setOrganisationData] = useState(emptyOrganisation);
+    const [sendOrganisation, setSendOrganisation] = useState(false);
+    const [finalOrganisation, setFinalOrganisation] = useState(null);
     const [formSubmitted, setFormSubmitted] = useState(false);
 
     useEffect(() => {
-        if (finalVenue){
-            setVenues([...Navigate, finalVenue]);
+        if (finalOrganisation){
+            setOrganisations([...organisations, finalOrganisation]);
             setFormSubmitted(true);
-            }
-   }, [finalVenue]);
+        }
+    }, [finalOrganisation]);
+
 
     useEffect(() => {
-        if (sendVenue){
-            postVenue(venueData)
+        if (sendOrganisation){
+            postOrganisation(organisationData)
             }
-   }, [sendVenue]);
-
+   }, [sendOrganisation]);
+ 
     const postAddress = (address) => {
         const request = new Request();
         request.post('/addresses', address)
         .then(res => res.json())
         .then((data) => {
             console.log('data back from db', data);
-            setVenueData({...venueData, address: {id: data.id}});
-            setSendVenue(true);
-            setAddresses([...addresses, data])
+            setOrganisationData({...organisationData, address: {id: data.id}});
+            setAddressData(data);
+            setAddresses([...addresses, addressData]);
+            setSendOrganisation(true);
         })
       }
 
-    const postVenue = (venue) => {
+    const postOrganisation = (organisation) => {
         const request = new Request();
-        request.post('/venues', venue)
+        request.post('/organisations', organisation)
         .then(res => res.json())
         .then((data) => {
             console.log('data back from db', data);
-            setFinalVenue({...data, address: addressData});
+            setFinalOrganisation({...data, address: addressData});
         })
     }
 
@@ -56,28 +58,14 @@ const VenueNew = ({venues, setVenues, addresses, setAddresses }) => {
         setAddressData(tempData);
     }
 
-    const onVenueChange = (e) => {
-        let tempData = {...venueData};
+    const onOrganisationChange = (e) => {
+        let tempData = {...organisationData};
         tempData[e.target.name] = e.target.value;
-        setVenueData(tempData);
-    }
-
-    const onVenueTypeChange = (e) => {
-        let tempData = {...venueData};
-        tempData.venueType = e.target.value ? e.target.value : "";
-        setVenueData(tempData);
-    }
-
-    const onCoordsChange = (e) => {
-        let tempData = {...venueData};
-        tempData[e.target.name] = e.target.value ? parseFloat(e.target.value) : "";
-        setVenueData(tempData);
+        setOrganisationData(tempData);
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // console.log(venueData);
-        // console.log(addressData);
         postAddress(addressData); 
     }
 
@@ -87,14 +75,7 @@ const VenueNew = ({venues, setVenues, addresses, setAddresses }) => {
                 <form onSubmit={handleSubmit} >
                     <div>
                         <label htmlFor='name'>Name</label>
-                        <input type='text' name='name' value={venueData.name} onChange = {onVenueChange} required />
-                    </div>
-                    <div>
-                        <label htmlFor='venueType'>Type</label>
-                        <select name='venueType' onChange={onVenueTypeChange} defaultValue='' required>
-                            <option disabled value=''>Select Venue Type</option>
-                            {venueOptions}
-                        </select>
+                        <input type='text' name='name' value={organisationData.name} onChange = {onOrganisationChange} required />
                     </div>
                     <div>
                         <label htmlFor='addressLine1'>Address Line 1</label>
@@ -121,21 +102,15 @@ const VenueNew = ({venues, setVenues, addresses, setAddresses }) => {
                         <select name='country' value={addressData.country} onChange = {onAddressChange} >
                         {countryOptions}
                         </select>
-                    </div>
-                    <div>
-                        <label htmlFor='coordinatesE'>Coordinates</label>
-                        <input type='number' name='coordinatesE' value={venueData.coordinatesE} onChange = {onCoordsChange} />&#176;E
-                        <input type='number' name='coordinatesN' value={venueData.coordinatesN} onChange = {onCoordsChange} />&#176;N
-                    </div>
-          
+                    </div>          
                     <div>
                         <input type='submit' value='Submit' />  
                     </div>         
                 </form>
-                {formSubmitted && <Navigate to='/venues' /> }
+                {formSubmitted && <Navigate to='/organisations' /> }
             </div>
         </div>
     )
 }
 
-export default VenueNew;
+export default OrganisationNew;
