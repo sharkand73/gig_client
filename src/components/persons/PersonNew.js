@@ -11,21 +11,32 @@ const PersonNew = ({organisations, addresses, setAddresses, details, setDetails,
     const [detailsData, setDetailsData] = useState(emptyDetails);
     const [personData, setPersonData] = useState(emptyPerson);
     const [sendDetails, setSendDetails] = useState(false);
-    const [sendPerson, setSendPerson] = useState(false);
     const [formSubmitted, setFormSubmitted] = useState(false);
+    const [finalDetails, setFinalDetails] = useState(null);
+    const [finalPerson, setFinalPerson] = useState(null);
+
+
+    useEffect(() => {
+        if (finalPerson){
+            setPersons([...persons, finalPerson]);
+            setFormSubmitted(true);
+           }
+   }, [finalPerson]);
+
+   useEffect(() => {
+    if (finalDetails){
+        console.log('Final details:');
+        console.log(finalDetails);
+        setDetails([...details, finalDetails]);
+        postPerson(personData);
+        }
+    }, [finalDetails]);
 
     useEffect(() => {
          if (sendDetails){
              postDetails(detailsData)
             }
     }, [sendDetails]);
-
-    useEffect(() => {
-        if (sendPerson){
-            postPerson(personData)
-            }
-   }, [sendPerson]);
-
     
     const postAddress = (address) => {
         const request = new Request();
@@ -35,7 +46,7 @@ const PersonNew = ({organisations, addresses, setAddresses, details, setDetails,
             console.log('data back from db', data);
             setDetailsData({...detailsData, address: {id: data.id}});
             setAddressData(data);
-            setAddresses([...addresses, addressData]);
+            setAddresses({...addresses, addressData});
             setSendDetails(true);
         })
       }
@@ -46,10 +57,8 @@ const PersonNew = ({organisations, addresses, setAddresses, details, setDetails,
         .then(res => res.json())
         .then((data) => {
             console.log('data back from db', data);
-            setPersonData({...personData, details: {id: data.id}});
-            // fix this stuff (see organisations)
-            setDetails([...details, data]);
-            setSendPerson(true);
+            setPersonData({...personData, details: {id: data.id}}); // ??
+            setFinalDetails({...data, address: addressData});
         })
     }
 
@@ -59,8 +68,7 @@ const PersonNew = ({organisations, addresses, setAddresses, details, setDetails,
         .then(res => res.json())
         .then((data) => {
             console.log('data back from db', data);
-            setFormSubmitted(true);
-            setPersons([...persons, data])
+            setFinalPerson({...data, details: finalDetails});   
         })
     }
 
@@ -119,9 +127,6 @@ const PersonNew = ({organisations, addresses, setAddresses, details, setDetails,
                         </select>
                     </div>
                     <div>
-                        <button onClick = {()=>console.log(personData)}>Show</button>
-                    </div>
-                    <div>
                         <label htmlFor='addressLine1'>Address Line 1</label>
                         <input type='text' name='addressLine1' value={addressData.addressLine1} onChange = {onAddressChange} />
                     </div>
@@ -148,9 +153,6 @@ const PersonNew = ({organisations, addresses, setAddresses, details, setDetails,
                         </select>
                     </div>
                     <div>
-                        <button onClick = {()=>console.log(addressData)}>Show</button>
-                    </div>
-                    <div>
                         <label htmlFor='mobile'>Mobile</label>
                         <input type='text' name='mobile' value={detailsData.mobile} onChange = {onDetailsChange} />
                     </div>
@@ -165,9 +167,6 @@ const PersonNew = ({organisations, addresses, setAddresses, details, setDetails,
                     <div>
                         <label htmlFor='altEmail'>Alt. Email</label>
                         <input type='text' name='altEmail' value={detailsData.altEmail} onChange = {onDetailsChange} />
-                    </div>
-                    <div>
-                        <button onClick = {()=>console.log(detailsData)}>Show</button>
                     </div>
                     <div>
                         <input type='submit' value='Submit' />  

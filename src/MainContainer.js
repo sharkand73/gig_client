@@ -41,11 +41,11 @@ const MainContainer = ({ addresses, details, organisations, persons, venues, act
   let futureGigs;
   if (gigs){
     if (gigs.length > 1) {
-      sortedGigs = gigs.slice().sort((gig1, gig2) => (new Date(gig2.startTime) - new Date(gig1.startTime)));
+      sortedGigs = [...gigs].sort((gig1, gig2) => (new Date(gig2.startTime) - new Date(gig1.startTime)));
       const now = new Date();
       // The array sortedGigs is in reverse chronological order.
       // Use reverse() to put it into chronological order.
-      futureGigs = [...sortedGigs].filter((item) => new Date(item.startTime) >= now);
+      futureGigs = [...sortedGigs].reverse().filter((item) => new Date(item.startTime) >= now);
     }
   }
 
@@ -65,7 +65,9 @@ const MainContainer = ({ addresses, details, organisations, persons, venues, act
       
           <Route path = 'people' element={ persons ? <PersonsHome persons={persons} /> :  <Loading />} >
             <Route index element = { persons ? <PersonList persons={persons} /> :  <Loading />} />
-            <Route path = 'new' element={ organisations && persons && details ? <PersonNew organisations={organisations} setAddresses={setAddresses} setDetails={setDetails} setPersons={setPersons}  />  : <Loading />} />
+            <Route path = 'new' element={ organisations && persons && details ? 
+              <PersonNew organisations={organisations} setAddresses={setAddresses} details={details} setDetails={setDetails} 
+              persons={persons} setPersons={setPersons}  />  : <Loading />} />
             <Route path = ':id' element={ persons ? <Person persons={persons}  />  : <Loading />} />         
           </Route>
 

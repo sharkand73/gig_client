@@ -1,6 +1,6 @@
 import React from 'react';
 import { dateTimeStringToDate, dateTimeStringToTime } from '../../helpers/functions';
-
+import { convertEnumToString } from '../../helpers/enumHelper';
 
 const GigDetails = ({gig}) => {
 
@@ -16,7 +16,7 @@ const GigDetails = ({gig}) => {
           <div className = "td">Venue:</div><div className = "td">{gig.venue.name}</div>
         </div>
         <div className = "tr">
-          <div className = "td">Type:</div><div className = "td">{gig.gigType}</div>
+          <div className = "td">Type:</div><div className = "td">{convertEnumToString(gig.gigType)}</div>
         </div>
         <div className = "tr">
           <div>Arrival Time:</div><div className = "td">{dateTimeStringToTime(gig.arrivalTime)}</div>
@@ -31,13 +31,13 @@ const GigDetails = ({gig}) => {
           <div className = "td">Playing Time:</div><div className = "td">{gig.playingTime} mins</div>
         </div>
         <div className = "tr">
-          <div className = "td">Dress Code:</div><div className = "td">{gig.dressCode}</div>
+          <div className = "td">Dress Code:</div><div className = "td">{convertEnumToString(gig.dressCode)}</div>
         </div>
         <div className = "tr">
-          <div className = "td">Food Provided:</div><div className = "td">{gig.foodProvided? "YES" : "NO"}</div>
+          <div className = "td">Food Provided:</div><div className = "td">{gig.foodProvided? "Yes" : "No"}</div>
         </div>
         <div className = "tr">
-          <div className = "td">Sound Check:</div><div className = "td">{gig.soundCheck? "YES" : "NO"}</div>
+          <div className = "td">Sound Check:</div><div className = "td">{gig.soundCheck? "Yes" : "No"}</div>
         </div>
       </div>
     );
