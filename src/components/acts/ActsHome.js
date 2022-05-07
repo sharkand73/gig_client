@@ -8,7 +8,8 @@ const ActsHome = ({ acts }) => {
   return (
     <>
       <nav>
-        <Link to = '/acts' >All</Link>
+        <Link to = '/acts' >All </Link>
+        <Link to = '/new' >Add</Link>
       </nav> 
       <Outlet />
     </>

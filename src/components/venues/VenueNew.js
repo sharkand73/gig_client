@@ -17,7 +17,7 @@ const VenueNew = ({venues, setVenues, addresses, setAddresses }) => {
 
     useEffect(() => {
         if (finalVenue){
-            setVenues([...Navigate, finalVenue]);
+            setVenues([...venues, finalVenue]);
             setFormSubmitted(true);
             }
    }, [finalVenue]);
@@ -76,8 +76,6 @@ const VenueNew = ({venues, setVenues, addresses, setAddresses }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // console.log(venueData);
-        // console.log(addressData);
         postAddress(addressData); 
     }
 

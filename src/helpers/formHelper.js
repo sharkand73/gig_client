@@ -1,4 +1,4 @@
-import { countries, convertEnumToString, venueTypes} from "./enumHelper";
+import { countries, convertEnumToString, venueTypes, dressCodes } from "./enumHelper";
 
 export const emptyAddress = {
     addressLine1: "",
@@ -42,6 +42,13 @@ export const emptyOrganisation = {
     id: null
 };
 
+export const emptyAct = {
+    name: "",
+    prepRequired: false,
+    defaultDressCode: "UNKNOWN",
+    id: null
+};
+
 export const refObject = (id) => ({
     id: id
 });
@@ -55,6 +62,12 @@ export const countryOptions = countries.map((country, index) => (
 export const venueOptions = venueTypes.map((venueType, index) => (
             <option key={index} value={venueType}>
                 {convertEnumToString(venueType)}
+            </option>
+        ));
+
+export const dressCodeOptions = dressCodes.map((dressCode, index) => (
+            <option key={index} value={dressCode}>
+                {convertEnumToString(dressCode)}
             </option>
         ));
 

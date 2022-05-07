@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { findById } from '../../helpers/functions';
+import Back from '../buttons/Back';
 
 import Error from '../Error';
 
@@ -43,6 +44,7 @@ const Group = ({ groups }) => {
         <div className = "tr">
           <div className = "td">Messages:</div><div className = "td">{group.messages.length}</div>
         </div>
+        <Back />
       </div>
     );
 };

@@ -23,6 +23,7 @@ import PersonNew from './components/persons/PersonNew';
 import ActsHome from './components/acts/ActsHome';
 import ActList from './components/acts/ActList';
 import Act from './components/acts/Act';
+import ActNew from './components/acts/ActNew';
 
 import VenuesHome from './components/venues/VenuesHome';
 import VenueList from './components/venues/VenueList';
@@ -35,7 +36,7 @@ import Organisation from './components/organisations/Organisation';
 import OrganisationNew from './components/organisations/OrganisationNew';
 
 const MainContainer = ({ addresses, details, organisations, persons, venues, acts, groups, bookings, gigs, 
-                        setAddresses, setDetails, setOrganisations, setPersons, setVenues, setGroups, setBooking, setGigs}) => {
+                        setAddresses, setDetails, setOrganisations, setPersons, setVenues, setActs, setGroups, setBooking, setGigs}) => {
 
   let sortedGigs = gigs;
   let futureGigs;
@@ -84,6 +85,7 @@ const MainContainer = ({ addresses, details, organisations, persons, venues, act
 
           <Route path = 'acts' element={ acts ? <ActsHome acts={acts} /> :  <Loading />} >
             <Route index element = { acts ? <ActList acts={acts} /> :  <Loading />} />
+            <Route path = 'new' element={ acts ? <ActNew acts={acts} setActs={setActs}  />  : <Loading />} />
             <Route path = ':id' element={ acts ? <Act acts={acts}  />  : <Loading />} />
           </Route>
 
