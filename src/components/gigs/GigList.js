@@ -7,14 +7,14 @@ const GigList = ({filteredGigs, futureGigs}) => {
   
   const nextGig = (futureGigs.length > 0) ? futureGigs[0] : null;
   const gigObj = createGigObject(filteredGigs);
-  reverseGigObject(gigObj);
+  //reverseGigObject(gigObj);
   let yearRows;
   if (gigObj){
       yearRows = Object.keys(gigObj).reverse().map((year, index) => {
       return (
         <div className = 'year-group' key={index}>
           <h2>{year}</h2>
-          <GigSubList gigs={gigObj[year]} nextGig={nextGig} />
+          <GigSubList gigs={gigObj[year]} nextGig={nextGig} useNextGig={true}/>
         </div>
     )});
   }

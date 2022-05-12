@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { findById } from '../../helpers/functions';
 import Back from '../buttons/Back';
 
@@ -39,7 +39,13 @@ const Group = ({ groups }) => {
           <div className = "td">Archived:</div><div className = "td">{group.archived.toString()}</div>
         </div>
         <div className = "tr">
-          <div className = "td">Gigs:</div><div className = "td">{group.bookings.length}</div>
+          <div className = "td">Gigs:</div>
+          <div className = "td">
+            <Link to={`gigs`}> 
+              {group.bookings.length}
+            </Link>
+          </div>
+          
         </div>
         <div className = "tr">
           <div className = "td">Messages:</div><div className = "td">{group.messages.length}</div>

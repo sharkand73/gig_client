@@ -9,8 +9,8 @@ export const processFee = (fee) => {
     return fee === 0 ? "FREE" : "£"+fee.toFixed(2) ;
 }
 
-export const processGigClass = (gig, nextGig) => {
-    return (gig.id === nextGig.id ? 'ticket next-gig' : 'ticket normal-gig')
+export const processGigClass = (gig, nextGig, useNextGig) => {
+    return (useNextGig && gig.id === nextGig.id ? 'ticket next-gig' : 'ticket normal-gig')
 }
 
 export const reverseGigObject = (gigObj) => {

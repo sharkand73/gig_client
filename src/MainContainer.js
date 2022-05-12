@@ -14,6 +14,7 @@ import GigNext from './components/gigs/GigNext';
 import GroupsHome from './components/groups/GroupsHome';
 import GroupList from './components/groups/GroupList';
 import Group from './components/groups/Group';
+import GroupGigs from './components/groups/GroupGigs';
 
 import PersonsHome from './components/persons/PersonsHome';
 import PersonList from './components/persons/PersonList';
@@ -81,6 +82,7 @@ const MainContainer = ({ addresses, details, organisations, persons, venues, act
           <Route path = 'bookings' element={ groups ? <GroupsHome groups={groups} /> :  <Loading />} >
             <Route index element = { groups ? <GroupList groups={groups} /> :  <Loading />} />
             <Route path = ':id' element={ groups ? <Group groups={groups}  />  : <Loading />} />
+            <Route path = ':id/gigs' element={ groups ? <GroupGigs groups={groups} nextGig={null} useNextGig={false}  />  : <Loading />} />
           </Route>
 
           <Route path = 'acts' element={ acts ? <ActsHome acts={acts} /> :  <Loading />} >

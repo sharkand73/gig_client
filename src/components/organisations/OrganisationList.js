@@ -5,8 +5,6 @@ import { sortObjectsAlphabetically } from '../../helpers/functions';
 const OrganisationList = ({ organisations }) => {
 
   const sortedOrganisations = sortObjectsAlphabetically(organisations, 'name');
-  
-  console.log(sortedOrganisations);
 
   let organisationRows = {};
   if (organisations){

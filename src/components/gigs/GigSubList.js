@@ -5,12 +5,12 @@ import { dateTimeStringToDate } from '../../helpers/functions';
 import { processFee, processGigClass } from '../../helpers/gigHelper';
 
 
-const GigSubList = ({gigs, nextGig}) => {
+const GigSubList = ({gigs, nextGig, useNextGig}) => {
   
   const gigRows = gigs.map((gig, index) => {
     return (
       <Link to={`/gigs/${gig.id}`} key={index}> 
-      <div className={processGigClass(gig, nextGig)}>
+      <div className={processGigClass(gig, nextGig, useNextGig)}>
         <div className="text">   
           <div className="act">{gig.act.name}</div>        
           <div className="date">{dateTimeStringToDate(gig.startTime)}</div>
