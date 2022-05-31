@@ -2,6 +2,8 @@ import './App.css';
 import React, {useState, useEffect} from 'react';
 import { Route, Routes } from 'react-router-dom';
 
+import { sortObjectsChronologically } from './helpers/functions';
+
 import Loading from './components/Loading';
 import NavBar from './components/NavBar';
 
@@ -36,20 +38,30 @@ import OrganisationList from './components/organisations/OrganisationList';
 import Organisation from './components/organisations/Organisation';
 import OrganisationNew from './components/organisations/OrganisationNew';
 
-const MainContainer = ({ addresses, details, organisations, persons, venues, acts, groups, bookings, gigs, 
-                        setAddresses, setDetails, setOrganisations, setPersons, setVenues, setActs, setGroups, setBooking, setGigs}) => {
+import MessagesHome from './components/messages/MessagesHome';
+import MessageList from './components/messages/MessageList';
+import Message from './components/messages/Message';
+import MessageNew from './components/messages/MessageNew';
+
+const MainContainer = ({ addresses, details, organisations, persons,  
+                        messages, venues, acts, groups, bookings, gigs, 
+                        setAddresses, setDetails, setOrganisations,
+                        setPersons, setMessages, setVenues, setActs, 
+                        setGroups, setBookings, setGigs}) => {
 
   let sortedGigs = gigs;
   let futureGigs;
-  if (gigs){
-    if (gigs.length > 1) {
-      sortedGigs = [...gigs].sort((gig1, gig2) => (new Date(gig2.startTime) - new Date(gig1.startTime)));
+   if (gigs){
+  //   if (gigs.length > 1) {
+  //     sortedGigs = [...gigs].sort((gig1, gig2) => (new Date(gig2.startTime) - new Date(gig1.startTime)));
       const now = new Date();
       // The array sortedGigs is in reverse chronological order.
       // Use reverse() to put it into chronological order.
+
+      sortedGigs = sortObjectsChronologically(gigs, 'startTime', false);
       futureGigs = [...sortedGigs].reverse().filter((item) => new Date(item.startTime) >= now);
+    
     }
-  }
 
 
   return (
@@ -95,6 +107,12 @@ const MainContainer = ({ addresses, details, organisations, persons, venues, act
             <Route index element = { organisations ? <OrganisationList organisations={organisations} /> :  <Loading />} />
             <Route path = 'new' element={ organisations && addresses ? <OrganisationNew  addresses={addresses} setAddresses={setAddresses} organisations={organisations} setOrganisations={setOrganisations} />  : <Loading />} />
             <Route path = ':id' element={ organisations ? <Organisation organisations={organisations}  />  : <Loading />} />
+          </Route>
+
+          <Route path = 'messages' element={ messages ? <MessagesHome messages={messages} /> :  <Loading />} >
+            <Route index element = { messages ? <MessageList messages={messages} /> :  <Loading />} />
+            <Route path = 'new' element={ messages && groups ? <MessageNew  messages={messages} setMessages={setMessages} groups={groups} />  : <Loading />} />
+            <Route path = ':id' element={ messages ? <Message messages={messages}  />  : <Loading />} />
           </Route>
         </Routes>
 

@@ -15,6 +15,14 @@ export const dateTimeStringToTime = (dateTimeString) => {
     );
 };
 
+export const dateTimeStringToShortDate = (dateTimeString) => {
+  const dateTimeObject = new Date(dateTimeString);
+  return (
+    <Moment format="DD/MM/YYYY">{dateTimeObject}</Moment>
+    //<Moment format="DD/MM/YYYY">{dateTimeObject}</Moment>
+  );
+};
+
 export const findById = (objList, id) => {
     return objList.find((item) => item.id === id);
   }
@@ -37,3 +45,15 @@ export const sortObjectsAlphabetically = (objList, property) => {
   });
   return tempList;
 };
+
+
+export const sortObjectsChronologically = (objList, property, asc) => {
+  if (!objList || objList.length <= 1){
+    return objList
+  }
+  const multiplier = ((asc & 1) * 2) - 1;
+  let tempList = [...objList];
+  tempList.sort((a, b) => ((new Date(a[property]) - new Date(b[property])) * multiplier )
+  );
+  return tempList;
+}

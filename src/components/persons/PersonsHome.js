@@ -7,7 +7,7 @@ const PersonsHome = ({persons}) => {
     <>
       <nav>
         <Link to = '/people' >All </Link>
-        <Link to = '/people' >Add</Link>
+        <Link to = '/people/new' >Add</Link>
       </nav> 
       <Outlet />
     </>

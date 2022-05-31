@@ -1,18 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { sortObjectsAlphabetically } from '../../helpers/functions';
+import { sortObjectsChronologically, dateTimeStringToShortDate } from '../../helpers/functions';
+import { comms } from '../icons/icons';
 
 const MessageList = ({ messages }) => {
 
-  const sortedMessages = sortObjectsAlphabetically(messages, 'name');
+  const sortedMessages = sortObjectsChronologically(messages, 'date', false);
   
   let messageRows = {};
   if (messages){
   messageRows = sortedMessages.map((message, index) => {
     
     return (
-        <Link to={message.id.toString()} key={index} className="tr">            
-          <div className="td">{message.name}</div>
+        <Link to={message.id.toString()} key={index} className="message-summary"> 
+          <div className="">{comms[message.bookingMethod]}</div>           
+          <div className="">{dateTimeStringToShortDate(message.date)}</div>
+          <div className="">{message.body.slice(0,70)}...</div>
         </Link>
     );
   })};
@@ -21,7 +24,7 @@ const MessageList = ({ messages }) => {
     <div className="message-list list">
       
       <h1>Messages</h1> 
-      <div className="table">      
+      <div className="">      
         {messageRows}       
       </div>     
     </div>

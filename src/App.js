@@ -21,43 +21,87 @@ function App() {
   const [skills, setSkills] = useState(null);
   const [styles, setStyles] = useState(null);
 
+  const request = new Request();
 
+  const requestGigs = () => {
+    request.get('/gigs')
+  .then(data => setGigs(data));
+  }
 
-  const requestAll = function(){
-    const request = new Request();
-    const gigPromise = request.get('/gigs');
-    const bookingPromise = request.get('/bookings');
-    const groupPromise = request.get('/groups');
-    const actPromise = request.get('/acts');
-    const venuePromise = request.get('/venues');
-    const personPromise = request.get('/persons');
-    const detailsPromise = request.get('/details');
-    const addressPromise = request.get('/addresses');
-    const organisationPromise = request.get('/organisations');
-    const messagePromise = request.get('/messages');
-    const instrumentPromise = request.get('/instruments');
-    const skillPromise = request.get('/skills');
-    const stylePromise = request.get('/styles');
-    
+  const requestBookings = () => {
+    request.get('/bookings')
+  .then(data => setBookings(data));
+  }
 
-    Promise.all([gigPromise, bookingPromise, groupPromise, actPromise, venuePromise, personPromise, detailsPromise, addressPromise, organisationPromise, messagePromise, instrumentPromise, skillPromise, stylePromise])
-        .then((data) => {
-            setGigs(data[0]);
-            setBookings(data[1]);
-            setGroups(data[2]);
-            setActs(data[3]);
-            setVenues(data[4]);
-            setPersons(data[5]);
-            setDetails(data[6]);
-            setAddresses(data[7]);
-            setOrganisations(data[8]);
-            setMessages(data[9]);
-            setInstruments(data[10]);
-            setSkills(data[11]);
-            setStyles(data[12]);
-        })}
+  const requestGroups = () => {
+    request.get('/groups')
+  .then(data => setGroups(data));
+  }
 
-useEffect(()=>{requestAll()}, [])
+  const requestActs = () => {
+    request.get('/acts')
+  .then(data => setActs(data));
+  }
+
+  const requestVenues = () => {
+    request.get('/venues')
+  .then(data => setVenues(data));
+  }
+
+  const requestPersons = () => {
+    request.get('/persons')
+  .then(data => setPersons(data));
+  }
+
+  const requestDetails = () => {
+    request.get('/details')
+  .then(data => setDetails(data));
+  }
+
+  const requestAddresses = () => {
+    request.get('/addresses')
+  .then(data => setAddresses(data));
+  } 
+
+  const requestOrganisations = () => {
+    request.get('/organisations')
+  .then(data => setOrganisations(data));
+  }
+
+  const requestMessages = () => {
+    request.get('/messages')
+  .then(data => setMessages(data));
+  }
+
+  const requestInstruments = () => {
+    request.get('/instruments')
+  .then(data => setInstruments(data));
+  }
+
+  const requestSkills = () => {
+    request.get('/skills')
+  .then(data => setSkills(data));
+  }
+
+  const requestStyles = () => {
+    request.get('/styles')
+  .then(data => setStyles(data)); 
+  }
+
+useEffect(()=>{requestGigs()}, [gigs]);
+useEffect(()=>{requestBookings()}, [bookings]);
+useEffect(()=>{requestGroups()}, [groups]);
+useEffect(()=>{requestActs()}, [acts]);
+useEffect(()=>{requestVenues()}, [venues]);
+useEffect(()=>{requestPersons()}, [persons]);
+useEffect(()=>{requestDetails()}, [details]);
+useEffect(()=>{requestAddresses()}, [addresses]);
+useEffect(()=>{requestOrganisations()}, [organisations]);
+useEffect(()=>{requestMessages()}, [messages]);
+useEffect(()=>{requestInstruments()}, [instruments]);
+useEffect(()=>{requestSkills()}, [skills]);
+useEffect(()=>{requestStyles()}, [styles]);
+
 
   let sortedGigs = gigs;
   let futureGigs;

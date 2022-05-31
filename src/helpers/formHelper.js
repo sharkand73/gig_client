@@ -1,51 +1,59 @@
 import { countries, convertEnumToString, venueTypes, dressCodes } from "./enumHelper";
 
 export const emptyAddress = {
-    addressLine1: "",
-    addressLine2: "",
-    city: "",
-    region: "",
-    postcode: "",
-    country: "", 
+    addressLine1: '',
+    addressLine2: '',
+    city: '',
+    region: '',
+    postcode: '',
+    country: '', 
     id: null
 };
 
 export const emptyDetails = {
     address: null,
-    mobile: "",
-    altPhone: "",
-    email: "",
-    altEmail: "",
+    mobile: '',
+    altPhone: '',
+    email: '',
+    altEmail: '',
     id: null
 };
 
 export const emptyPerson = {
-    firstName: "",
-    lastName: "",
+    firstName: '',
+    lastName: '',
     details: null,
     organisation: null,
     id: null
 };
 
 export const emptyVenue = {
-    name: "",
-    venueType: "",
+    name: '',
+    venueType: '',
     address: null,
-    coordinatesE: "",
-    coordinatesN: "",
+    coordinatesE: '',
+    coordinatesN: '',
     id: null
 };
 
 export const emptyOrganisation = {
-    name: "",
+    name: '',
     address: null,
     id: null
 };
 
 export const emptyAct = {
-    name: "",
+    name: '',
     prepRequired: false,
     defaultDressCode: "UNKNOWN",
+    id: null
+};
+
+export const emptyMessage = {
+    date: '',
+    bookingGroup: {id: -1},
+    bookingMethod: 'SMS',
+    body: '',
     id: null
 };
 
@@ -71,4 +79,6 @@ export const dressCodeOptions = dressCodes.map((dressCode, index) => (
             </option>
         ));
 
+export const messageOptions = null;
+       
 
