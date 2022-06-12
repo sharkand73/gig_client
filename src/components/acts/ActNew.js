@@ -4,7 +4,7 @@ import Request from  '../../helpers/request';
 import { emptyAct, dressCodeOptions } from '../../helpers/formHelper';
 import Loading from '../Loading';
 
-const ActNew = ({ acts, setActs, reloads, setReloads }) => {
+const ActNew = ({ reloads, setReloads }) => {
     
     const [actData, setActData] = useState(emptyAct);
     const [formSubmitted, setFormSubmitted] = useState(false);
@@ -23,6 +23,7 @@ const ActNew = ({ acts, setActs, reloads, setReloads }) => {
         .then((data) => {
             console.log('data back from db', data);
             setFormProcessed(true);
+            setReloads(reloads + 1);
         })
       }
 
