@@ -47,7 +47,7 @@ const MainContainer = ({ addresses, details, organisations, persons,
                         messages, venues, acts, groups, bookings, gigs, 
                         setAddresses, setDetails, setOrganisations,
                         setPersons, setMessages, setVenues, setActs, 
-                        setGroups, setBookings, setGigs}) => {
+                        setGroups, setBookings, setGigs, reloads, setReloads}) => {
 
   let sortedGigs = gigs;
   let futureGigs;
@@ -80,14 +80,13 @@ const MainContainer = ({ addresses, details, organisations, persons,
           <Route path = 'people' element={ persons ? <PersonsHome persons={persons} /> :  <Loading />} >
             <Route index element = { persons ? <PersonList persons={persons} /> :  <Loading />} />
             <Route path = 'new' element={ organisations && persons && details ? 
-              <PersonNew organisations={organisations} setAddresses={setAddresses} details={details} setDetails={setDetails} 
-              persons={persons} setPersons={setPersons}  />  : <Loading />} />
+              <PersonNew organisations={organisations} reloads={reloads} setReloads={setReloads} />  : <Loading />} />
             <Route path = ':id' element={ persons ? <Person persons={persons}  />  : <Loading />} />         
           </Route>
 
           <Route path = 'venues' element={ venues ? <VenuesHome venues={venues} /> :  <Loading />} >
             <Route index element = { venues ? <VenueList venues={venues} /> :  <Loading />} />
-            <Route path = 'new' element={ venues && addresses ? <VenueNew  addresses={addresses} setAddresses={setAddresses} venues={venues} setVenues={setVenues} />  : <Loading />} />
+            <Route path = 'new' element={ venues && addresses ? <VenueNew reloads={reloads} setReloads={setReloads} />  : <Loading />} />
             <Route path = ':id' element={ venues ? <Venue venues={venues}  />  : <Loading />} />
           </Route>
 
@@ -99,19 +98,19 @@ const MainContainer = ({ addresses, details, organisations, persons,
 
           <Route path = 'acts' element={ acts ? <ActsHome acts={acts} /> :  <Loading />} >
             <Route index element = { acts ? <ActList acts={acts} /> :  <Loading />} />
-            <Route path = 'new' element={ acts ? <ActNew acts={acts} setActs={setActs}  />  : <Loading />} />
+            <Route path = 'new' element={ acts ? <ActNew reloads={reloads} setReloads={setReloads} />  : <Loading />} />
             <Route path = ':id' element={ acts ? <Act acts={acts}  />  : <Loading />} />
           </Route>
 
           <Route path = 'organisations' element={ organisations ? <OrganisationsHome organisations={organisations} /> :  <Loading />} >
             <Route index element = { organisations ? <OrganisationList organisations={organisations} /> :  <Loading />} />
-            <Route path = 'new' element={ organisations && addresses ? <OrganisationNew  addresses={addresses} setAddresses={setAddresses} organisations={organisations} setOrganisations={setOrganisations} />  : <Loading />} />
+            <Route path = 'new' element={ organisations && addresses ? <OrganisationNew reloads={reloads} setReloads={setReloads}/>  : <Loading />} />
             <Route path = ':id' element={ organisations ? <Organisation organisations={organisations}  />  : <Loading />} />
           </Route>
 
           <Route path = 'messages' element={ messages ? <MessagesHome messages={messages} /> :  <Loading />} >
             <Route index element = { messages ? <MessageList messages={messages} /> :  <Loading />} />
-            <Route path = 'new' element={ messages && groups ? <MessageNew  messages={messages} setMessages={setMessages} groups={groups} />  : <Loading />} />
+            <Route path = 'new' element={ messages && groups ? <MessageNew groups={groups} reloads={reloads} setReloads={setReloads}/>  : <Loading />} />
             <Route path = ':id' element={ messages ? <Message messages={messages}  />  : <Loading />} />
           </Route>
         </Routes>

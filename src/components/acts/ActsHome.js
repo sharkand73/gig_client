@@ -9,7 +9,7 @@ const ActsHome = ({ acts }) => {
     <>
       <nav>
         <Link to = '/acts' >All </Link>
-        <Link to = '/new' >Add</Link>
+        <Link to = '/acts/new' >Add</Link>
       </nav> 
       <Outlet />
     </>

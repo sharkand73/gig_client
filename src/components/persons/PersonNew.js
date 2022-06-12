@@ -2,35 +2,26 @@ import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import Request from  '../../helpers/request';
 import { emptyAddress, emptyDetails, emptyPerson, countryOptions } from '../../helpers/formHelper';
+import Loading from '../Loading';
 
 
-const PersonNew = ({organisations, addresses, setAddresses, details, setDetails, persons, setPersons}) => {
+const PersonNew = ({organisations, reloads, setReloads }) => {
     
     emptyAddress.country = "Scotland";
     const [addressData, setAddressData] = useState(emptyAddress);
     const [detailsData, setDetailsData] = useState(emptyDetails);
     const [personData, setPersonData] = useState(emptyPerson);
     const [sendDetails, setSendDetails] = useState(false);
+    const [sendPerson, setSendPerson] = useState(false);
     const [formSubmitted, setFormSubmitted] = useState(false);
-    const [finalDetails, setFinalDetails] = useState(null);
-    const [finalPerson, setFinalPerson] = useState(null);
+    const [formProcessed, setFormProcessed] = useState(false);
 
-
-    useEffect(() => {
-        if (finalPerson){
-            setPersons([...persons, finalPerson]);
-            setFormSubmitted(true);
-           }
-   }, [finalPerson]);
 
    useEffect(() => {
-    if (finalDetails){
-        console.log('Final details:');
-        console.log(finalDetails);
-        setDetails([...details, finalDetails]);
+    if (sendPerson){
         postPerson(personData);
         }
-    }, [finalDetails]);
+    }, [sendPerson]);
 
     useEffect(() => {
          if (sendDetails){
@@ -38,6 +29,12 @@ const PersonNew = ({organisations, addresses, setAddresses, details, setDetails,
             }
     }, [sendDetails]);
     
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setFormSubmitted(true);
+        postAddress(addressData); 
+    }
+
     const postAddress = (address) => {
         const request = new Request();
         request.post('/addresses', address)
@@ -45,11 +42,9 @@ const PersonNew = ({organisations, addresses, setAddresses, details, setDetails,
         .then((data) => {
             console.log('data back from db', data);
             setDetailsData({...detailsData, address: {id: data.id}});
-            setAddressData(data);
-            setAddresses({...addresses, addressData});
             setSendDetails(true);
         })
-      }
+    }
     
     const postDetails = (details) => {
         const request = new Request();
@@ -57,8 +52,8 @@ const PersonNew = ({organisations, addresses, setAddresses, details, setDetails,
         .then(res => res.json())
         .then((data) => {
             console.log('data back from db', data);
-            setPersonData({...personData, details: {id: data.id}}); // ??
-            setFinalDetails({...data, address: addressData});
+            setPersonData({...personData, details: {id: data.id}}); 
+            setSendPerson(true);
         })
     }
 
@@ -68,7 +63,8 @@ const PersonNew = ({organisations, addresses, setAddresses, details, setDetails,
         .then(res => res.json())
         .then((data) => {
             console.log('data back from db', data);
-            setFinalPerson({...data, details: finalDetails});   
+            setFormProcessed(true);
+            setReloads(reloads + 1);   
         })
     }
 
@@ -94,11 +90,6 @@ const PersonNew = ({organisations, addresses, setAddresses, details, setDetails,
         let tempData = {...personData};
         tempData.organisation = e.target.value ? {id: e.target.value} : null;
         setPersonData(tempData);
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        postAddress(addressData); 
     }
 
     const organisationOptions = organisations.map((org) => (
@@ -172,7 +163,8 @@ const PersonNew = ({organisations, addresses, setAddresses, details, setDetails,
                         <input type='submit' value='Submit' />  
                     </div>         
                 </form>
-                {formSubmitted && <Navigate to='/people' /> }
+                {formSubmitted && <Loading />}
+                {formProcessed && <Navigate to='/people' /> }
             </div>
         </div>
     )

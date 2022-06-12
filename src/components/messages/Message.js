@@ -11,6 +11,20 @@ const Message = ({messages}) => {
     const id  = parseInt(useParams().id);
     const message = findById(messages, id);
    
+    const bookingComponent = () => {
+      if (message.bookingGroup){
+        return (
+          <Link to={`/bookings/${message.bookingGroup.id.toString()}`} >
+            {message.bookingGroup.bookingCode}
+          </Link>
+        )}
+        else {
+          return (
+            <span>None </span>
+          )
+        }
+      }
+
     if (!message){
       return (
         <Error entity = {"message"} />
@@ -23,10 +37,7 @@ const Message = ({messages}) => {
           {dateTimeStringToShortDate(message.date)}
         </div>
         <div>
-          Booking: 
-          <Link to={`/bookings/${message.bookingGroup.id.toString()}`} >
-            {message.bookingGroup.bookingCode}
-          </Link>
+          Booking: {bookingComponent()}
         </div>
           
         <div>

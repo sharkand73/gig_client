@@ -1,9 +1,9 @@
 export const countries = ['Scotland', 'England', 'Wales'];
 
-export const bookingMethods = ['TEXT', 'EMAIL', 'PHONE', 'MESSENGER', 'WHATSAPP'];
+export const bookingMethods = ['SMS', 'EMAIL', 'PHONE', 'MESSENGER', 'WHATSAPP'];
 export const bookingStatuses = ['CONFIRMED', 'UNCONFIRMED', 'CANCELLED', 'CLOSED'];
 export const dressCodes = ['UNKNOWN', 'BLACK_TIE', 'WHITE_JACKET', 'ALL_BLACK', 'BLACK_SUIT_WHITE_SHIRT',
-                    'BLACK_SUIT_BLACKSHIRT', 'SUIT', 'SUIT_NO_TIE', 'VINTAGE', 'CASUAL',
+                    'BLACK_SUIT_BLACK_SHIRT', 'SUIT', 'SUIT_NO_TIE', 'VINTAGE', 'CASUAL',
                     'FANCY_DRESS'];
 export const gigTypes = [];
 export const paymentMethods = ['BACS', 'CASH', 'CHEQUE'];

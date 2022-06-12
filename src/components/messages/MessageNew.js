@@ -4,22 +4,14 @@ import Request from  '../../helpers/request';
 import { emptyMessage } from '../../helpers/formHelper';
 import { sortObjectsChronologically } from '../../helpers/functions';
 import { bookingMethods, convertEnumToString } from '../../helpers/enumHelper';
+import Loading from '../Loading';
 
 
-
-const MessageNew = ({messages, setMessages, groups }) => {
+const MessageNew = ({groups, reloads, setReloads }) => {
     
     const [messageData, setMessageData] = useState(emptyMessage);
     const [sendData, setSendData] = useState(false);
-    const [finalMessage, setFinalMessage] = useState(null);
-    const [formSubmitted, setFormSubmitted] = useState(false);
-
-    useEffect(() => {
-        if (finalMessage){
-            setMessages([...messages, finalMessage]);
-            setFormSubmitted(true);
-            }
-   }, [finalMessage]);
+    const [formProcessed, setFormProcessed] = useState(false);
 
    useEffect(() => sendData && postMessage(messageData), [sendData]);
     const postMessage = (message) => {
@@ -28,8 +20,19 @@ const MessageNew = ({messages, setMessages, groups }) => {
         .then(res => res.json())
         .then((data) => {
             console.log('data back from db', data);
-            setFinalMessage(data);
+            setFormProcessed(true);
+            setReloads(reloads + 1);
         })
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (messageData.bookingGroup && messageData.bookingGroup.id === -1){
+            const tempData = {...messageData};
+            tempData.bookingGroup = null;
+            setMessageData(tempData);
+        }
+        setSendData(true);      
     }
 
     const onChange = (e) => {
@@ -42,16 +45,6 @@ const MessageNew = ({messages, setMessages, groups }) => {
         let tempData = {...messageData};
         tempData.bookingGroup = tempData.bookingGroup = {id: e.target.value};
         setMessageData(tempData);
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (messageData.bookingGroup && messageData.bookingGroup.id === -1){
-            const tempData = {...messageData};
-            tempData.bookingGroup = null;
-            setMessageData(tempData);
-        }
-        setSendData(true);      
     }
 
     const getBookingGroupValue = () => {
@@ -106,7 +99,8 @@ const MessageNew = ({messages, setMessages, groups }) => {
                         <input type='submit' value='Submit' />  
                     </div>         
                 </form>
-                {formSubmitted && <Navigate to='/messages' /> }
+                {sendData && <Loading />}
+                {formProcessed && <Navigate to='/messages' /> }
             </div>
         </div>
     )

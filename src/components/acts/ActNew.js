@@ -2,19 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import Request from  '../../helpers/request';
 import { emptyAct, dressCodeOptions } from '../../helpers/formHelper';
+import Loading from '../Loading';
 
-const ActNew = ({ acts, setActs }) => {
+const ActNew = ({ acts, setActs, reloads, setReloads }) => {
     
     const [actData, setActData] = useState(emptyAct);
-    const [finalAct, setFinalAct] = useState(null);
     const [formSubmitted, setFormSubmitted] = useState(false);
+    const [formProcessed, setFormProcessed] = useState(false);
 
-    useEffect(() => {
-        if (finalAct){
-            setActs([...acts, finalAct]);
-            setFormSubmitted(true);
-            }
-   }, [finalAct]);
+    const handleSubmit = (e) => {
+    e.preventDefault();
+    setFormSubmitted(true);
+    postAct(actData); 
+}
 
     const postAct = (act) => {
         const request = new Request();
@@ -22,7 +22,7 @@ const ActNew = ({ acts, setActs }) => {
         .then(res => res.json())
         .then((data) => {
             console.log('data back from db', data);
-            setFinalAct(data);
+            setFormProcessed(true);
         })
       }
 
@@ -38,11 +38,6 @@ const ActNew = ({ acts, setActs }) => {
         setActData(tempData);
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        postAct(actData); 
-    }
-
     return (
         <div className = 'form-container'>
             <div>
@@ -53,7 +48,7 @@ const ActNew = ({ acts, setActs }) => {
                     </div>
                     <div>
                         <label htmlFor='defaultDressCode'>Default Dress Code</label>
-                        <select name='defaultDressCode' value={actData.defaultDressCode} onChange={onActChange} defaultValue='UNKNOWN' required>
+                        <select name='defaultDressCode' value={actData.defaultDressCode} onChange={onActChange} required>
                             {dressCodeOptions}
                         </select>
                     </div>
@@ -65,7 +60,8 @@ const ActNew = ({ acts, setActs }) => {
                         <input type='submit' value='Submit' />  
                     </div>         
                 </form>
-                {formSubmitted && <Navigate to='/acts' /> }
+                {formSubmitted && <Loading />}
+                {formProcessed && <Navigate to='/acts' /> }
             </div>
         </div>
     )

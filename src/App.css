@@ -23,6 +23,11 @@ body{
   padding-left: 10%;
 }
 
+.loading {
+  width: 20%;
+  margin: auto;
+}
+
 button {
   background-color: white;
   border-style: solid;

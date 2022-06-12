@@ -2,31 +2,31 @@ import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import Request from  '../../helpers/request';
 import { emptyAddress, emptyVenue, countryOptions, venueOptions } from '../../helpers/formHelper';
+import Loading from '../Loading';
 
 
-
-const VenueNew = ({venues, setVenues, addresses, setAddresses }) => {
+const VenueNew = ({ reloads, setReloads }) => {
     
     emptyAddress.country = "Scotland";
 
     const [addressData, setAddressData] = useState(emptyAddress);
     const [venueData, setVenueData] = useState(emptyVenue);
     const [sendVenue, setSendVenue] = useState(false);
-    const [finalVenue, setFinalVenue] = useState(null);
     const [formSubmitted, setFormSubmitted] = useState(false);
+    const [formProcessed, setFormProcessed] = useState(false);
 
-    useEffect(() => {
-        if (finalVenue){
-            setVenues([...venues, finalVenue]);
-            setFormSubmitted(true);
-            }
-   }, [finalVenue]);
 
     useEffect(() => {
         if (sendVenue){
             postVenue(venueData)
             }
    }, [sendVenue]);
+
+   const handleSubmit = (e) => {
+    e.preventDefault();
+    setFormSubmitted(true);
+    postAddress(addressData); 
+    }
 
     const postAddress = (address) => {
         const request = new Request();
@@ -36,7 +36,6 @@ const VenueNew = ({venues, setVenues, addresses, setAddresses }) => {
             console.log('data back from db', data);
             setVenueData({...venueData, address: {id: data.id}});
             setSendVenue(true);
-            setAddresses([...addresses, data])
         })
       }
 
@@ -46,7 +45,8 @@ const VenueNew = ({venues, setVenues, addresses, setAddresses }) => {
         .then(res => res.json())
         .then((data) => {
             console.log('data back from db', data);
-            setFinalVenue({...data, address: addressData});
+            setFormProcessed(true);
+            setReloads(reloads + 1);
         })
     }
 
@@ -74,10 +74,6 @@ const VenueNew = ({venues, setVenues, addresses, setAddresses }) => {
         setVenueData(tempData);
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        postAddress(addressData); 
-    }
 
     return (
         <div className = 'form-container'>
@@ -130,7 +126,8 @@ const VenueNew = ({venues, setVenues, addresses, setAddresses }) => {
                         <input type='submit' value='Submit' />  
                     </div>         
                 </form>
-                {formSubmitted && <Navigate to='/venues' /> }
+                {formSubmitted && <Loading />}
+                {formProcessed && <Navigate to='/venues' /> }
             </div>
         </div>
     )

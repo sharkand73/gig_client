@@ -15,7 +15,7 @@ const GigSubList = ({gigs, nextGig, useNextGig}) => {
           <div className="act">{gig.act.name}</div>        
           <div className="date">{dateTimeStringToDate(gig.startTime)}</div>
           <div className="venue">{gig.venue.name}, {gig.venue.address.city}</div>
-          <div className="money">{processFee(gig.booking.fee)}</div>
+          <div className="money">{processFee(gig.booking.fee + gig.booking.expenses)}</div>
         </div>
         <div className="stub">
           {/* Insert stuff here */}
