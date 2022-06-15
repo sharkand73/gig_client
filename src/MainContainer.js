@@ -16,6 +16,7 @@ import GigNext from './components/gigs/GigNext';
 import GroupsHome from './components/groups/GroupsHome';
 import GroupList from './components/groups/GroupList';
 import Group from './components/groups/Group';
+import GroupNew from './components/groups/GroupNew';
 import GroupGigs from './components/groups/GroupGigs';
 
 import PersonsHome from './components/persons/PersonsHome';
@@ -90,10 +91,11 @@ const MainContainer = ({ addresses, details, organisations, persons,
             <Route path = ':id' element={ venues ? <Venue venues={venues}  />  : <Loading />} />
           </Route>
 
-          <Route path = 'bookings' element={ groups ? <GroupsHome groups={groups} /> :  <Loading />} >
+          <Route path = 'bookings' element = { groups ? <GroupsHome groups={groups} /> :  <Loading />} >
             <Route index element = { groups ? <GroupList groups={groups} /> :  <Loading />} />
-            <Route path = ':id' element={ groups ? <Group groups={groups}  />  : <Loading />} />
-            <Route path = ':id/gigs' element={ groups ? <GroupGigs groups={groups} nextGig={null} useNextGig={false}  />  : <Loading />} />
+            <Route path = 'new' element = { groups && persons ? <GroupNew persons={persons} reloads={reloads} setReloads={setReloads} /> :  <Loading />} />
+            <Route path = ':id' element ={ groups ? <Group groups={groups}  />  : <Loading />} />
+            <Route path = ':id/gigs' element = { groups ? <GroupGigs groups={groups} nextGig={null} useNextGig={false}  />  : <Loading />} />
           </Route>
 
           <Route path = 'acts' element={ acts ? <ActsHome acts={acts} /> :  <Loading />} >

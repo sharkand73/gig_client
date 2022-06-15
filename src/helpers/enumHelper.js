@@ -18,8 +18,13 @@ export const venueTypes = ['LARGE_THEATRE', 'MEDIUM_THEATRE', 'SMALL_THEATRE',
 
 export const convertEnumToString = (item) => {
     const enumWords = item.split('_');
-    const normalCaseWords = enumWords.map((word) => (
-        word[0] + word.slice(1).toLowerCase()
-        ));
+    const allowedCapitalWords = ['BACS', 'SMS'];
+    const normalCaseWords = enumWords.map((word) => {
+        if (allowedCapitalWords.indexOf(word) + 1){
+            return word;
+        }
+        return word[0] + word.slice(1).toLowerCase();        
+    }
+    );
     return normalCaseWords.join(' ');
 }

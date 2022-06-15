@@ -1,4 +1,4 @@
-import { countries, convertEnumToString, venueTypes, dressCodes } from "./enumHelper";
+import { countries, convertEnumToString, venueTypes, dressCodes, paymentMethods } from "./enumHelper";
 
 export const emptyAddress = {
     addressLine1: '',
@@ -57,6 +57,16 @@ export const emptyMessage = {
     id: null
 };
 
+export const emptyGroup = {
+    booker: null,
+    bookingDate: '',
+    bookingCode: '',
+    feePaymentMethod: 'BACS',
+    expensesPaymentMethod: 'BACS',
+    archived: false,
+    id: null
+};
+
 export const refObject = (id) => ({
     id: id
 });
@@ -79,6 +89,13 @@ export const dressCodeOptions = dressCodes.map((dressCode, index) => (
             </option>
         ));
 
+export const paymentOptions = paymentMethods.map((method, index) => (
+            <option key={index} value={method}>
+                {convertEnumToString(method)}
+            </option>
+))
+ 
 export const messageOptions = null;
        
 
+ 

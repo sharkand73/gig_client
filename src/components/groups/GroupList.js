@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { dateTimeStringToShortDate } from '../../helpers/functions';
 
 const GroupList = ({ groups }) => {
 
@@ -9,7 +10,7 @@ const GroupList = ({ groups }) => {
     
     return (
         <Link to={group.id.toString()} key={index} className="tr">  
-          <div className="td">{group.bookingDate}</div>           
+          <div className="td">{dateTimeStringToShortDate(group.bookingDate)}</div>           
           <div className="td">{group.bookingCode}</div>
         </Link>
     );
