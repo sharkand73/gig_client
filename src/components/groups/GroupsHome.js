@@ -6,7 +6,8 @@ const GroupsHome = ({ groups }) => {
   return (
     <>
       <nav>
-        <Link to = '/bookings' >All</Link>
+        <Link to = '/bookings' >All </Link>
+        <Link to = '/bookings/new' >Add</Link>
       </nav> 
       <Outlet />
     </>

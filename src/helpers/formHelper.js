@@ -1,12 +1,14 @@
 import { countries, convertEnumToString, venueTypes, dressCodes, paymentMethods } from "./enumHelper";
 
+export const homeCountry = 'Scotland';
+
 export const emptyAddress = {
     addressLine1: '',
     addressLine2: '',
     city: '',
     region: '',
     postcode: '',
-    country: '', 
+    country: homeCountry, 
     id: null
 };
 

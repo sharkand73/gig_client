@@ -48,7 +48,12 @@ const Group = ({ groups }) => {
           
         </div>
         <div className = "tr">
-          <div className = "td">Messages:</div><div className = "td">{group.messages.length}</div>
+          <div className = "td">Messages:</div>
+          <div className = "td">
+            <Link to={`messages`}> 
+              {group.messages.length}
+            </Link>
+          </div>
         </div>
         <Back />
       </div>

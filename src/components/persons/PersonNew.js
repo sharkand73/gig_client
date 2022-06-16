@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import Request from  '../../helpers/request';
 import { emptyAddress, emptyDetails, emptyPerson, countryOptions } from '../../helpers/formHelper';
+import { objectsAreEqual } from '../../helpers/functions';
 import Loading from '../Loading';
 
 
 const PersonNew = ({organisations, reloads, setReloads }) => {
     
-    emptyAddress.country = "Scotland";
     const [addressData, setAddressData] = useState(emptyAddress);
     const [detailsData, setDetailsData] = useState(emptyDetails);
     const [personData, setPersonData] = useState(emptyPerson);
@@ -15,7 +15,6 @@ const PersonNew = ({organisations, reloads, setReloads }) => {
     const [sendPerson, setSendPerson] = useState(false);
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [formProcessed, setFormProcessed] = useState(false);
-
 
    useEffect(() => {
     if (sendPerson){
@@ -36,14 +35,20 @@ const PersonNew = ({organisations, reloads, setReloads }) => {
     }
 
     const postAddress = (address) => {
-        const request = new Request();
-        request.post('/addresses', address)
-        .then(res => res.json())
-        .then((data) => {
-            console.log('data back from db', data);
-            setDetailsData({...detailsData, address: {id: data.id}});
+        if (objectsAreEqual(addressData, emptyAddress)){
+            setDetailsData({...detailsData, address: null});
             setSendDetails(true);
-        })
+        }
+        else {
+            const request = new Request();
+            request.post('/addresses', address)
+            .then(res => res.json())
+            .then((data) => {
+                console.log('data back from db', data);
+                setDetailsData({...detailsData, address: {id: data.id}});
+                setSendDetails(true);            
+            });
+        }        
     }
     
     const postDetails = (details) => {
@@ -160,7 +165,7 @@ const PersonNew = ({organisations, reloads, setReloads }) => {
                         <input type='text' name='altEmail' value={detailsData.altEmail} onChange = {onDetailsChange} />
                     </div>
                     <div>
-                        <input type='submit' value='Submit' />  
+                        <input type='submit' value='Save' />  
                     </div>         
                 </form>
                 {formSubmitted && <Loading />}

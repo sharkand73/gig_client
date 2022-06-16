@@ -18,6 +18,7 @@ import GroupList from './components/groups/GroupList';
 import Group from './components/groups/Group';
 import GroupNew from './components/groups/GroupNew';
 import GroupGigs from './components/groups/GroupGigs';
+import GroupMessages from './components/groups/GroupMessages';
 
 import PersonsHome from './components/persons/PersonsHome';
 import PersonList from './components/persons/PersonList';
@@ -96,12 +97,13 @@ const MainContainer = ({ addresses, details, organisations, persons,
             <Route path = 'new' element = { groups && persons ? <GroupNew persons={persons} reloads={reloads} setReloads={setReloads} /> :  <Loading />} />
             <Route path = ':id' element ={ groups ? <Group groups={groups}  />  : <Loading />} />
             <Route path = ':id/gigs' element = { groups ? <GroupGigs groups={groups} nextGig={null} useNextGig={false}  />  : <Loading />} />
+            <Route path = ':id/messages' element = { groups ? <GroupMessages groups={groups} />  : <Loading />} />
           </Route>
 
           <Route path = 'acts' element={ acts ? <ActsHome acts={acts} /> :  <Loading />} >
             <Route index element = { acts ? <ActList acts={acts} /> :  <Loading />} />
             <Route path = 'new' element={ acts ? <ActNew reloads={reloads} setReloads={setReloads} />  : <Loading />} />
-            <Route path = ':id' element={ acts ? <Act acts={acts}  />  : <Loading />} />
+            <Route path = ':id' element={ acts && gigs ? <Act acts={acts} gigs={gigs} />  : <Loading />} />
           </Route>
 
           <Route path = 'organisations' element={ organisations ? <OrganisationsHome organisations={organisations} /> :  <Loading />} >

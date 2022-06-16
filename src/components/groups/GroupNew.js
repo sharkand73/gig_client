@@ -112,7 +112,7 @@ const GroupNew = ({ persons, reloads, setReloads }) => {
                         <input type='checkbox' name='archived' value={groupData.archived} onChange = {onArchivedChange} />
                     </div>
                     <div>
-                        <input type='submit' value='Submit' />  
+                        <input type='submit' value='Save' />  
                     </div>          
                 </form>
                 {formSubmitted && <Loading />}

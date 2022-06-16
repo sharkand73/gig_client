@@ -96,7 +96,7 @@ const MessageNew = ({groups, reloads, setReloads }) => {
                         <input type='textArea' size={1000} name='body' value={messageData.body} onChange = {onChange} />
                     </div>
                     <div>
-                        <input type='submit' value='Submit' />  
+                        <input type='submit' value='Save' />  
                     </div>         
                 </form>
                 {sendData && <Loading />}

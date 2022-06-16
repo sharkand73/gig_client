@@ -57,3 +57,5 @@ export const sortObjectsChronologically = (objList, property, asc) => {
   );
   return tempList;
 }
+
+export const objectsAreEqual = (object1, object2) => (JSON.stringify(object1) === JSON.stringify(object2));

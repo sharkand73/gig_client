@@ -2,7 +2,7 @@ class Request {
 
     constructor(){
       //this.baseUrl = "http://localhost:8080/api"
-      
+      this.baseUrl = "https://sharkey-gigster-gigservice.herokuapp.com/api";
     }
   
       get(url) {

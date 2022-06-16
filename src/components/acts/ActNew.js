@@ -58,7 +58,7 @@ const ActNew = ({ reloads, setReloads }) => {
                         <input type='checkbox' name='prepRequired' value={actData.prepRequired} onChange = {onPrepRequiredChange} />
                     </div>
                     <div>
-                        <input type='submit' value='Submit' />  
+                        <input type='submit' value='Save' />  
                     </div>         
                 </form>
                 {formSubmitted && <Loading />}

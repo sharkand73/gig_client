@@ -12,7 +12,7 @@ const MessageList = ({ messages }) => {
   messageRows = sortedMessages.map((message, index) => {
     
     return (
-        <Link to={message.id.toString()} key={index} className="message-summary"> 
+        <Link to={`/messages/${message.id.toString()}`} key={index} className="message-summary"> 
           <div className="">{comms[message.bookingMethod]}</div>           
           <div className="">{dateTimeStringToShortDate(message.date)}</div>
           <div className="">{message.body.slice(0,70)}...</div>
