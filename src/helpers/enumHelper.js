@@ -5,7 +5,8 @@ export const bookingStatuses = ['CONFIRMED', 'UNCONFIRMED', 'CANCELLED', 'CLOSED
 export const dressCodes = ['UNKNOWN', 'BLACK_TIE', 'WHITE_JACKET', 'ALL_BLACK', 'BLACK_SUIT_WHITE_SHIRT',
                     'BLACK_SUIT_BLACK_SHIRT', 'SUIT', 'SUIT_NO_TIE', 'VINTAGE', 'CASUAL',
                     'FANCY_DRESS'];
-export const gigTypes = [];
+export const gigTypes = ['REHEARSAL', 'MUSIC_SOCIETY', 'JAZZ_FESTIVAL', 'FESTIVAL', 'THEATRE', 
+                    'BACKGROUND', 'PUB', 'JAZZ', 'FUNCTION', 'WEDDING', 'RECORDING', 'OTHER'];
 export const paymentMethods = ['BACS', 'CASH', 'CHEQUE'];
 export const instrumentNames = [];
 export const skillNames = [];

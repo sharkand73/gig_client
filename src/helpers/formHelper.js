@@ -1,4 +1,4 @@
-import { countries, convertEnumToString, venueTypes, dressCodes, paymentMethods } from "./enumHelper";
+import { countries, convertEnumToString, venueTypes, dressCodes, gigTypes, paymentMethods, bookingStatuses } from "./enumHelper";
 
 export const homeCountry = 'Scotland';
 
@@ -69,6 +69,34 @@ export const emptyGroup = {
     id: null
 };
 
+export const emptyGig = {
+    booking: null,
+    venue: null,
+    act: null,
+    arrivalTime: "",
+    startTime: "",
+    endTime: "",
+    playingTime: 60,
+    gigType: "WEDDING",
+    dressCode: "UNKNOWN",
+    soundCheck: false,
+    foodProvided: false,
+    distanceDriven: 0,
+    moneySpent: 0,
+    id: null
+};
+
+export const emptyBooking = {
+    bookingGroup: null,
+    fee: 150,
+    status: "CONFIRMED",
+    dateConfirmed: "",
+    dateCancelled: "",
+    dateFeePaid: "",
+    dateExpensesPaid: "",
+    id: null
+}
+
 export const refObject = (id) => ({
     id: id
 });
@@ -91,12 +119,23 @@ export const dressCodeOptions = dressCodes.map((dressCode, index) => (
             </option>
         ));
 
+export const gigTypeOptions = gigTypes.map((gigType, index) => (
+            <option key={index} value={gigType}>
+                {convertEnumToString(gigType)}
+            </option>
+        ));
+
 export const paymentOptions = paymentMethods.map((method, index) => (
             <option key={index} value={method}>
                 {convertEnumToString(method)}
             </option>
-))
+        ));
  
+export const statusOptions = bookingStatuses.map((status, index) => (
+            <option key={index} value={status}>
+                {convertEnumToString(status)}
+            </option>
+        ));
 export const messageOptions = null;
        
 

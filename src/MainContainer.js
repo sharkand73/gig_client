@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { sortObjectsChronologically } from './helpers/functions';
@@ -10,7 +10,8 @@ import NavBar from './components/NavBar';
 import GigsHome from './components/gigs/GigsHome';
 import GigList from './components/gigs/GigList';
 import Gig from './components/gigs/Gig';
-import GigNext from './components/gigs/GigNext';
+import GigNew from './components/gigs/GigNew';
+import GigNext from './components/gigs/GigNext'
 //import NewGig from './components/NewGig';
 
 import GroupsHome from './components/groups/GroupsHome';
@@ -75,7 +76,8 @@ const MainContainer = ({ addresses, details, organisations, persons,
           <Route index element={ gigs ? <GigNext filteredGigs={futureGigs} /> : <Loading />} />
 
           <Route path = 'gigs' element={ gigs ? <GigsHome filteredGigs={sortedGigs} /> : <Loading />} >
-            <Route index element = { gigs? <GigList filteredGigs = {sortedGigs} futureGigs = {futureGigs}/> : <Loading />} />
+            <Route index element = { gigs ? <GigList filteredGigs = {sortedGigs} futureGigs = {futureGigs}/> : <Loading />} />
+            <Route path = 'new' element = { venues && acts ? <GigNew venues={venues} acts={acts} groups={groups} reloads={reloads} setReloads={setReloads} /> :  <Loading />} />
             <Route path = ':id' element = { gigs ? <Gig gigs={gigs} /> : <Loading />} /> 
           </Route> 
       

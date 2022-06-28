@@ -6,7 +6,8 @@ const GigsHome = ({sortedGigs}) => {
   return (
     <>
     <nav>
-      <Link to = '/gigs' >All</Link>
+      <Link to = '/gigs' >All </Link>
+      <Link to = '/gigs/new' > Add</Link>
     </nav> 
     <Outlet />
   </>

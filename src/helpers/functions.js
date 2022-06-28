@@ -59,3 +59,9 @@ export const sortObjectsChronologically = (objList, property, asc) => {
 }
 
 export const objectsAreEqual = (object1, object2) => (JSON.stringify(object1) === JSON.stringify(object2));
+
+export const addDay = (dateString) => {
+  const givenDate = new Date(dateString);
+  givenDate.setDate(givenDate.getDate() + 1);  
+  return givenDate.toISOString().slice(0,10);
+}
