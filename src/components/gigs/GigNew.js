@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Navigate } from 'react-router-dom';
 import { emptyGig, emptyBooking, gigTypeOptions, dressCodeOptions, statusOptions } from "../../helpers/formHelper";
-import { addDay, sortObjectsAlphabetically } from "../../helpers/functions";
+import { sortObjectsAlphabetically, addDay, combineDateAndTime } from "../../helpers/functions";
 import Request from "../../helpers/request";
 import Loading from "../Loading";
 
@@ -125,13 +125,13 @@ const GigNew = ({venues, acts, groups, reloads, setReloads}) => {
                     end: times.end});
         }
         // Set the arrival and start datetimes in gigToSend
-        gigToSend.arrivalTime = new Date(`${eventDate}T${times.arrival}`);
-        gigToSend.startTime = new Date(`${eventDate}T${times.start}`);
+        gigToSend.arrivalTime = combineDateAndTime(eventDate, times.arrival); 
+        gigToSend.startTime = combineDateAndTime(eventDate, times.start); 
         let finishDate = eventDate;
         if (times.end < times.start){
             finishDate = addDay(finishDate);
         }
-        gigToSend.endTime = new Date(`${finishDate}T${times.end}`);
+        gigToSend.endTime = combineDateAndTime(eventDate, times.end); 
         setGigData(gigToSend);
         setSendGig(true);
     }

@@ -23,6 +23,19 @@ export const dateTimeStringToShortDate = (dateTimeString) => {
   );
 };
 
+export const combineDateAndTime = (dateString, timeString) => {
+  let combinedDate = new Date(`${dateString}T${timeString}`);
+  const offset = combinedDate.getTimezoneOffset();
+  combinedDate.setMinutes(combinedDate.getMinutes() - offset);
+  return combinedDate.toISOString();
+};
+
+export const addDay = (dateString) => {
+  const givenDate = new Date(dateString);
+  givenDate.setDate(givenDate.getDate() + 1);  
+  return givenDate.toISOString().slice(0,10);
+};
+
 export const findById = (objList, id) => {
     return objList.find((item) => item.id === id);
   }
@@ -60,8 +73,3 @@ export const sortObjectsChronologically = (objList, property, asc) => {
 
 export const objectsAreEqual = (object1, object2) => (JSON.stringify(object1) === JSON.stringify(object2));
 
-export const addDay = (dateString) => {
-  const givenDate = new Date(dateString);
-  givenDate.setDate(givenDate.getDate() + 1);  
-  return givenDate.toISOString().slice(0,10);
-}
