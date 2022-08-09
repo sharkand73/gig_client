@@ -1,7 +1,9 @@
 import React from 'react';
 import GigDetails from './GigDetails';
 
-const GigNext = ({filteredGigs}) => {
+const GigNext = ({futureGigs}) => {
+
+  const filteredGigs = futureGigs.filter(gig => gig.booking.status != "CANCELLED");
 
   let message;
   if (filteredGigs.length)

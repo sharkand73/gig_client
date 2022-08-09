@@ -93,7 +93,7 @@ const MessageNew = ({groups, reloads, setReloads }) => {
                     </div>
                     <div>
                         <label htmlFor='body'>Message Body</label>
-                        <input type='textArea' size={1000} name='body' value={messageData.body} onChange = {onChange} />
+                        <input type='textArea' maxLength={1000} name='body' value={messageData.body} onChange = {onChange} />
                     </div>
                     <div>
                         <input type='submit' value='Save' />  

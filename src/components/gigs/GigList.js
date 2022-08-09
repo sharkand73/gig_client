@@ -1,11 +1,23 @@
-import React from 'react';
-import { createGigObject, reverseGigObject } from '../../helpers/gigHelper';
+import React, { useState } from 'react';
+import { createGigObject, reverseGigObject, isCancelled } from '../../helpers/gigHelper';
 import GigSubList from './GigSubList';
 
 
-const GigList = ({filteredGigs, futureGigs}) => {
+const GigList = ({gigs, futureGigs}) => {
   
-  const nextGig = (futureGigs.length > 0) ? futureGigs[0] : null;
+  const [view, setView] = useState({reverseChronology: false,
+                                    showPastGigs: false,
+                                    showCancelledGigs: false});
+
+  const nextGig = (futureGigs.length > 0) ? futureGigs.filter(g => !isCancelled(g))[0] : null;
+
+  let filteredGigs;
+  filteredGigs = view.showPastGigs ? gigs : futureGigs;
+  if (!view.showCancelledGigs){
+    filteredGigs = filteredGigs.filter(g => !isCancelled(g));
+  }
+
+
   const gigObj = createGigObject(filteredGigs);
   //reverseGigObject(gigObj);
   let yearRows;
@@ -20,12 +32,14 @@ const GigList = ({filteredGigs, futureGigs}) => {
   }
 
   return (
+    <div className = "all-gigs">
     <div className="gig-list">
       
       <h1>Engagements</h1> 
-      <div className="gig-list">      
+      <div className="gig-sublist">      
         {yearRows}       
       </div>     
+    </div>
     </div>
   )};
 

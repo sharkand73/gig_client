@@ -19,4 +19,6 @@ export const reverseGigObject = (gigObj) => {
     });
 } 
 
+export const isCancelled = (gig) => gig.booking.status === 'CANCELLED';
+
 

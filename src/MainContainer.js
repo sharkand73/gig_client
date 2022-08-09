@@ -61,8 +61,8 @@ const MainContainer = ({ addresses, details, organisations, persons,
       // The array sortedGigs is in reverse chronological order.
       // Use reverse() to put it into chronological order.
 
-      sortedGigs = sortObjectsChronologically(gigs, 'startTime', false);
-      futureGigs = [...sortedGigs].reverse().filter((item) => new Date(item.startTime) >= now);
+      sortedGigs = sortObjectsChronologically(gigs, 'startTime', true);
+      futureGigs = [...sortedGigs].filter((item) => new Date(item.startTime) >= now);
     
     }
 
@@ -73,11 +73,11 @@ const MainContainer = ({ addresses, details, organisations, persons,
         <NavBar />
 
         <Routes>
-          <Route index element={ gigs ? <GigNext filteredGigs={futureGigs} /> : <Loading />} />
+          <Route index element={ gigs ? <GigNext futureGigs={futureGigs} /> : <Loading />} />
 
-          <Route path = 'gigs' element={ gigs ? <GigsHome filteredGigs={sortedGigs} /> : <Loading />} >
-            <Route index element = { gigs ? <GigList filteredGigs = {sortedGigs} futureGigs = {futureGigs}/> : <Loading />} />
-            <Route path = 'new' element = { venues && acts ? <GigNew venues={venues} acts={acts} groups={groups} reloads={reloads} setReloads={setReloads} /> :  <Loading />} />
+          <Route path = 'gigs' element={ gigs ? <GigsHome gigs={sortedGigs} /> : <Loading />} >
+            <Route index element = { gigs ? <GigList gigs={sortedGigs} futureGigs={futureGigs}/> : <Loading />} />
+            <Route path = 'new' element = { venues && acts && groups ? <GigNew venues={venues} acts={acts} groups={groups} reloads={reloads} setReloads={setReloads} /> :  <Loading />} />
             <Route path = ':id' element = { gigs ? <Gig gigs={gigs} /> : <Loading />} /> 
           </Route> 
       

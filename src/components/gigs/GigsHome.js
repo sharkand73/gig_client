@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 
-const GigsHome = ({sortedGigs}) => {
+const GigsHome = () => {
 
   return (
     <>
