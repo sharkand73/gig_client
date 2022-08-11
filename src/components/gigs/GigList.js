@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { createGigObject, reverseGigObject, isCancelled } from '../../helpers/gigHelper';
+import React, { useState, useEffect } from 'react';
+import { createGigObject, reverseGigObject, isCancelled, getInitialViewState } from '../../helpers/gigHelper';
 import GigSubList from './GigSubList';
+import { GigViewSettings } from './GigViewSettings';
 
 
 const GigList = ({gigs, futureGigs}) => {
   
-  const [view, setView] = useState({reverseChronology: false,
-                                    showPastGigs: false,
-                                    showCancelledGigs: false});
+  const [view, setView] = useState(getInitialViewState());
+  useEffect(() => localStorage.setItem("gigView", JSON.stringify(view)), [view]);
 
   const nextGig = (futureGigs.length > 0) ? futureGigs.filter(g => !isCancelled(g))[0] : null;
 
@@ -33,13 +33,14 @@ const GigList = ({gigs, futureGigs}) => {
 
   return (
     <div className = "all-gigs">
-    <div className="gig-list">
-      
-      <h1>Engagements</h1> 
-      <div className="gig-sublist">      
-        {yearRows}       
-      </div>     
-    </div>
+      <GigViewSettings setView = {setView} />
+      <div className="gig-list">
+        
+        <h1>Engagements</h1> 
+        <div className="gig-sublist">      
+          {yearRows}       
+        </div>     
+      </div>
     </div>
   )};
 

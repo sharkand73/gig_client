@@ -21,4 +21,10 @@ export const reverseGigObject = (gigObj) => {
 
 export const isCancelled = (gig) => gig.booking.status === 'CANCELLED';
 
-
+export const getInitialViewState = () => {
+    const defaultView = {reverseChronology: false,
+        showPastGigs: true,
+        showCancelledGigs: true};
+    const storedView = JSON.parse(localStorage.getItem("gigView"));
+    return storedView ? storedView : defaultView;
+}
