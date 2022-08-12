@@ -7,7 +7,10 @@ import { GigViewSettings } from './GigViewSettings';
 const GigList = ({gigs, futureGigs}) => {
   
   const [view, setView] = useState(getInitialViewState());
-  useEffect(() => localStorage.setItem("gigView", JSON.stringify(view)), [view]);
+  useEffect(() => {
+    console.log(view);
+    localStorage.setItem("gigView", JSON.stringify(view))
+  }, [view]);
 
   const nextGig = (futureGigs.length > 0) ? futureGigs.filter(g => !isCancelled(g))[0] : null;
 
@@ -19,7 +22,10 @@ const GigList = ({gigs, futureGigs}) => {
 
 
   const gigObj = createGigObject(filteredGigs);
-  //reverseGigObject(gigObj);
+  if (view.reverseChronology)
+  {
+  reverseGigObject(gigObj);
+  }
   let yearRows;
   if (gigObj){
       yearRows = Object.keys(gigObj).reverse().map((year, index) => {
@@ -33,7 +39,7 @@ const GigList = ({gigs, futureGigs}) => {
 
   return (
     <div className = "all-gigs">
-      <GigViewSettings setView = {setView} />
+      <GigViewSettings view={view} setView={setView} />
       <div className="gig-list">
         
         <h1>Engagements</h1> 

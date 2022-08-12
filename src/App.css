@@ -199,3 +199,17 @@ form > div > input {
   left: 50;
   opacity: 0.5;
 }
+
+.gig-view-form {
+  background-color: rgb(101, 168, 170);
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.view-options {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+
+}
