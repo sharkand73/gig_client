@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { sortAsc, sortDesc } from '../../helpers/functions';
 import { createGigObject, reverseGigObject, isCancelled, getInitialViewState } from '../../helpers/gigHelper';
 import GigSubList from './GigSubList';
 import { GigViewSettings } from './GigViewSettings';
@@ -8,7 +9,6 @@ const GigList = ({gigs, futureGigs}) => {
   
   const [view, setView] = useState(getInitialViewState());
   useEffect(() => {
-    console.log(view);
     localStorage.setItem("gigView", JSON.stringify(view))
   }, [view]);
 
@@ -19,16 +19,17 @@ const GigList = ({gigs, futureGigs}) => {
   if (!view.showCancelledGigs){
     filteredGigs = filteredGigs.filter(g => !isCancelled(g));
   }
-
+  if (view.reverseChronology){
+    filteredGigs.reverse();
+  }
 
   const gigObj = createGigObject(filteredGigs);
-  if (view.reverseChronology)
-  {
-  reverseGigObject(gigObj);
-  }
+
+
   let yearRows;
   if (gigObj){
-      yearRows = Object.keys(gigObj).reverse().map((year, index) => {
+      const yearList = view.reverseChronology ? sortDesc(Object.keys(gigObj)) : sortAsc(Object.keys(gigObj));
+      yearRows = yearList.map((year, index) => {
       return (
         <div className = 'year-group' key={index}>
           <h2>{year}</h2>

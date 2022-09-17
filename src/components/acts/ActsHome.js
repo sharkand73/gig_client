@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import All from '../buttons/All';
+import New from '../buttons/New';
 
 const ActsHome = ({ acts }) => {
 
@@ -8,8 +10,8 @@ const ActsHome = ({ acts }) => {
   return (
     <>
       <nav>
-        <Link to = '/acts' >All </Link>
-        <Link to = '/acts/new' >Add</Link>
+        <Link to = '/acts'><All /> </Link>
+        <Link to = '/acts/new'><New /></Link>
       </nav> 
       <Outlet />
     </>

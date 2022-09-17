@@ -40,6 +40,10 @@ export const findById = (objList, id) => {
     return objList.find((item) => item.id === id);
   }
 
+export const sortAsc = (numberList) => numberList.sort((a,b) => a - b); 
+
+export const sortDesc = (numberList) => numberList.sort((a,b) => b - a);
+
 export const sortObjectsAlphabetically = (objList, property) => {
   if (!objList || objList.length <= 1){
     return objList

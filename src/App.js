@@ -5,8 +5,6 @@ import Request from  './helpers/request';
 
 function App() {
 
-  //const baseUrl = 'http://localhost:8080/api';
-
   const [gigs, setGigs] = useState(null);
   const [bookings, setBookings] = useState(null);
   const [groups, setGroups] = useState(null);
@@ -20,8 +18,9 @@ function App() {
   const [instruments, setInstruments] = useState(null);
   const [skills, setSkills] = useState(null);
   const [styles, setStyles] = useState(null);
-
   const [reloads, setReloads] = useState(0);
+
+  const cachedNextGig = JSON.parse(localStorage.getItem('nextGig'));
 
   const request = new Request();
 
@@ -98,7 +97,8 @@ useEffect(()=>{requestAll()}, [reloads])
                     setGigs={setGigs}
                     messages={messages}
                     setMessages={setMessages} 
-                    reloads={reloads}
+                    nextGig={cachedNextGig}
+                    reloads={reloads}                    
                     setReloads={setReloads}/>
   )
 }

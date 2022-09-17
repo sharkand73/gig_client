@@ -48,9 +48,9 @@ import MessageNew from './components/messages/MessageNew';
 
 const MainContainer = ({ addresses, details, organisations, persons,  
                         messages, venues, acts, groups, bookings, gigs, 
-                        setAddresses, setDetails, setOrganisations,
-                        setPersons, setMessages, setVenues, setActs, 
-                        setGroups, setBookings, setGigs, reloads, setReloads}) => {
+                        setAddresses, setDetails, setOrganisations, setPersons, 
+                        setMessages, setVenues, setActs, setGroups, setBookings, setGigs, 
+                        nextGig, reloads, setReloads}) => {
 
   let sortedGigs = gigs;
   let futureGigs;
@@ -66,14 +66,13 @@ const MainContainer = ({ addresses, details, organisations, persons,
     
     }
 
-
   return (
     <div className="App">
       
         <NavBar />
 
         <Routes>
-          <Route index element={ gigs ? <GigNext futureGigs={futureGigs} /> : <Loading />} />
+          <Route index element={ gigs ? <GigNext futureGigs={futureGigs} cache={false} /> : nextGig ? <GigNext futureGigs={[nextGig]} cache={true} /> : <Loading />} />
 
           <Route path = 'gigs' element={ gigs ? <GigsHome gigs={sortedGigs} /> : <Loading />} >
             <Route index element = { gigs ? <GigList gigs={sortedGigs} futureGigs={futureGigs}/> : <Loading />} />
@@ -120,10 +119,7 @@ const MainContainer = ({ addresses, details, organisations, persons,
             <Route path = ':id' element={ messages ? <Message messages={messages}  />  : <Loading />} />
           </Route>
         </Routes>
-
-
     </div>
-
   )
 }
 

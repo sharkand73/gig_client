@@ -10,9 +10,6 @@ const Person = ({persons}) => {
 
     const id  = parseInt(useParams().id);
     const person = findById(persons, id);
-
-    //console.log(id);
-    //console.log(person.email);
     
     if (!person){
       return (
