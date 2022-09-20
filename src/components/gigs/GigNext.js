@@ -40,7 +40,7 @@ const GigNext = ({futureGigs, cache}) => {
         <header>
           <div id="gig-msg">
               <h1>{message}</h1>
-              {cache ? <Asterisk /> : null} 
+              {cache ? <Asterisk /> : <span>&nbsp;</span>} 
           </div>
             <a href={getMapLink()} target='_blank'>
               <FontAwesomeIcon className='play' icon={faPlay} />

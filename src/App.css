@@ -6,37 +6,58 @@ body{
   font-family: 'Courier New', Courier, monospace;
   margin-left: 15%;
   margin-right: 15%;
+  height: 100vh;
 }
 
 .App {
-  background-image:linear-gradient(#fefbea,white);
+  background-image:linear-gradient(#a7c7e7, #779ecb);
   padding: 5%;
   justify-self: center;
-  min-height: 1000px;
+  height: 100vh;
 }
 
 NavBar {
-  float: right;
+  width: 100%;
 }
+
 .nav {  
   display: block;
   position: absolute;
+  top: 82px;
+  right: 157px;
   z-index: 2;
   background-color: white;
-  padding: 5px;
+  padding: 10px;
+  text-align: right;
+  box-shadow: -3px 3px 3px 3px grey; 
+}
+
+.clicked {
+
 }
 
 .nav hr {
   color: #eee;
+  margin-bottom: 0;
 }
 
 .hide {
   display: none;
 }
 
+.burger-menu {
+  display:flex;
+  justify-content: flex-end;
+}
+
 .dropdown-item {
   display: block;
   width: 150px;
+  padding-top: 8px;
+}
+
+.dropdown-item:hover {
+  background-color: #ffc;
 }
 
 .loading {
@@ -54,20 +75,12 @@ button {
   padding: 4px;
 }
 
-.selected-nav {
-  background-color: #ffc;
-}
-
-.unselected-nav {
-  background-color: #fff;
-}
 
 .crud {
   border-color: black;
 }
 
 .crud:hover {
-  border-color: red;
   background-color: #ffc;
 }
 
@@ -75,6 +88,7 @@ button {
   background-color: #eee;
   padding: 10px;
   border-radius: 10px;
+  width:75%;
 }
 
 .gig header {
@@ -156,7 +170,12 @@ a:visited {
 
 
 .gig-list {
-  width: 80%;
+  width: 90%;
+}
+
+.gig-sublist {
+  height: 420px;
+  overflow-y: scroll;
 }
 
 .ticket {
@@ -260,7 +279,7 @@ form > div > input {
 }
 
 .gig-view-form {
-  background-color: rgb(101, 168, 170);
+  background-color: #779ecb;
   margin-top: 5px;
   display: flex;
   justify-content: space-around;
