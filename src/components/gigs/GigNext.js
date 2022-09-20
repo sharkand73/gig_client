@@ -2,6 +2,7 @@ import React from 'react';
 import GigDetails from './GigDetails';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
+import Asterisk from '../icons/Asterisk';
 
 const GigNext = ({futureGigs, cache}) => {
 
@@ -11,11 +12,11 @@ const GigNext = ({futureGigs, cache}) => {
   let message;
   if (gigsExist)
   {
-    message = `Next engagement${cache ? " (cached)":""}:`;
+    message = "Next Engagement";
   }
   else
   {
-    message = "No engagements coming up.";
+    message = "No engagements coming up";
   }
 
   let gig = gigsExist ? filteredGigs[0]: null;
@@ -36,13 +37,18 @@ const GigNext = ({futureGigs, cache}) => {
 
     return (
       <div className="gig">
-        <div className='gig-info'>
-          <h1>{message}</h1> 
+        <header>
+          <div id="gig-msg">
+              <h1>{message}</h1>
+              {cache ? <Asterisk /> : null} 
+          </div>
+            <a href={getMapLink()} target='_blank'>
+              <FontAwesomeIcon className='play' icon={faPlay} />
+            </a>   
+        </header>
+        <div>
           {gigsExist ? <GigDetails gig={gig} /> : null}
         </div>
-        <a href={getMapLink()} target='_blank'>
-          <FontAwesomeIcon className='play' icon={faPlay} />
-        </a>   
       </div>
     );
 };

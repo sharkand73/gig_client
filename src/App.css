@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald');
 
 body{
-  background-color:rgb(239, 109, 109);
+  background-color: #eee;
   color: black;
   font-family: 'Courier New', Courier, monospace;
   margin-left: 15%;
@@ -9,19 +9,34 @@ body{
 }
 
 .App {
-  background-color:cadetblue;
+  background-image:linear-gradient(#fefbea,white);
   padding: 5%;
   justify-self: center;
   min-height: 1000px;
 }
 
-.Nav {  
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  margin-bottom: 25px;
-  padding-right: 10%;
-  padding-left: 10%;
+NavBar {
+  float: right;
+}
+.nav {  
+  display: block;
+  position: absolute;
+  z-index: 2;
+  background-color: white;
+  padding: 5px;
+}
+
+.nav hr {
+  color: #eee;
+}
+
+.hide {
+  display: none;
+}
+
+.dropdown-item {
+  display: block;
+  width: 150px;
 }
 
 .loading {
@@ -37,15 +52,6 @@ button {
   font-size: 14pt;
   font-weight: bold;
   padding: 4px;
-}
-
-.Nav button {
-  border-color: red;
-}
-
-.Nav button:hover {
-  background-color: #ffc;
-  transform: scale(1.2);
 }
 
 .selected-nav {
@@ -71,20 +77,36 @@ button {
   border-radius: 10px;
 }
 
-.gig-info h1 {
+.gig header {
+  display: flex;
+  justify-content: space-around;
+}
+
+#gig-msg h1 {
   margin-top: 0;
+  display: inline-block;
+}
+
+Asterisk {
+  display: inline-block;
+  vertical-align:text-top;
 }
 
 .play{
-  margin-left: 10%;
-  vertical-align: bottom;
-  font-size: 60pt;
+  vertical-align: top;
+  font-size: 35pt;
   color: green;
 }
 
 .play:hover {
   color: limegreen;
   transform: scale(1.2);
+}
+
+.gig > div {
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .gig-info {
