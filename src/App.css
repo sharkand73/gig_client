@@ -4,36 +4,32 @@ body{
   background-color: #eee;
   color: black;
   font-family: 'Courier New', Courier, monospace;
-  margin-left: 15%;
-  margin-right: 15%;
   height: 100vh;
 }
 
 .App {
   background-image:linear-gradient(#a7c7e7, #779ecb);
   padding: 5%;
-  justify-self: center;
   height: 100vh;
+  width: auto;
 }
 
 NavBar {
-  width: 100%;
+  margin-left: 90%;
+  width: auto;
 }
 
-.nav {  
+#nav {  
   display: block;
-  position: absolute;
-  top: 82px;
-  right: 157px;
+  position: fixed;
+  right: 0px;
+  top: 0;
   z-index: 2;
   background-color: white;
   padding: 10px;
   text-align: right;
   box-shadow: -3px 3px 3px 3px grey; 
-}
-
-.clicked {
-
+  transition: transform .3s cubic-bezier(0, .52, 0, 1);
 }
 
 .nav hr {
@@ -41,18 +37,23 @@ NavBar {
   margin-bottom: 0;
 }
 
+.show {
+  transform: translate3d(0,0,0);
+}
+
 .hide {
-  display: none;
+  transform: translate3d(200px,0,0);
 }
 
 .burger-menu {
-  display:flex;
-  justify-content: flex-end;
+  margin-left: 80%;
+  width: 20%;
+  /* display:flex;
+  justify-content: flex-end; */
 }
 
 .dropdown-item {
   display: block;
-  width: 150px;
   padding-top: 8px;
 }
 
@@ -75,7 +76,6 @@ button {
   padding: 4px;
 }
 
-
 .crud {
   border-color: black;
 }
@@ -85,7 +85,7 @@ button {
 }
 
 .gig {
-  background-color: #eee;
+  background-color: inherit;
   padding: 10px;
   border-radius: 10px;
   width:75%;
@@ -133,15 +133,20 @@ Asterisk {
 
 .tr {
   display: table-row;
+  background-color: #ddd;
+}
+
+.tr:hover {
+  background-color: #e7e7e7;
 }
 
 .td {
   display: table-cell;
-  padding: 5px;
+  padding: 5px 10px;
   border-color: #bbb;
   border-style: solid;
   border-width: 1px;
-  background-color: #ddd;
+  
 }
 
 .money {
@@ -173,7 +178,7 @@ a:visited {
   width: 90%;
 }
 
-.gig-sublist {
+.item-list {
   height: 420px;
   overflow-y: scroll;
 }
@@ -299,5 +304,23 @@ form > div > input {
 
   .play {
     margin-left: 80%;
+  }
+}
+
+@media only screen and (max-width: 700px) { 
+
+  .gig {
+    width: 100%;
+  }
+
+  .play {
+    margin-left: 0;
+  }
+
+  .burger-menu {
+    margin-left: 90%;
+    width: 15%;
+    /* display:flex;
+    justify-content: flex-end; */
   }
 }

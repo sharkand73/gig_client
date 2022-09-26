@@ -70,55 +70,56 @@ const MainContainer = ({ addresses, details, organisations, persons,
     <div className="App">
       
         <NavBar />
+        <div className="routes">
+          <Routes>
+            <Route index element={ gigs ? <GigNext futureGigs={futureGigs} cache={false} /> : nextGig ? <GigNext futureGigs={[nextGig]} cache={true} /> : <Loading />} />
 
-        <Routes>
-          <Route index element={ gigs ? <GigNext futureGigs={futureGigs} cache={false} /> : nextGig ? <GigNext futureGigs={[nextGig]} cache={true} /> : <Loading />} />
+            <Route path = 'gigs' element={ gigs ? <GigsHome gigs={sortedGigs} /> : <Loading />} >
+              <Route index element = { gigs ? <GigList gigs={sortedGigs} futureGigs={futureGigs}/> : <Loading />} />
+              <Route path = 'new' element = { venues && acts && groups ? <GigNew venues={venues} acts={acts} groups={groups} reloads={reloads} setReloads={setReloads} /> :  <Loading />} />
+              <Route path = ':id' element = { gigs ? <Gig gigs={gigs} /> : <Loading />} /> 
+            </Route> 
+        
+            <Route path = 'people' element={ persons ? <PersonsHome persons={persons} /> :  <Loading />} >
+              <Route index element = { persons ? <PersonList persons={persons} /> :  <Loading />} />
+              <Route path = 'new' element={ organisations && persons && details ? 
+                <PersonNew organisations={organisations} reloads={reloads} setReloads={setReloads} />  : <Loading />} />
+              <Route path = ':id' element={ persons ? <Person persons={persons}  />  : <Loading />} />         
+            </Route>
 
-          <Route path = 'gigs' element={ gigs ? <GigsHome gigs={sortedGigs} /> : <Loading />} >
-            <Route index element = { gigs ? <GigList gigs={sortedGigs} futureGigs={futureGigs}/> : <Loading />} />
-            <Route path = 'new' element = { venues && acts && groups ? <GigNew venues={venues} acts={acts} groups={groups} reloads={reloads} setReloads={setReloads} /> :  <Loading />} />
-            <Route path = ':id' element = { gigs ? <Gig gigs={gigs} /> : <Loading />} /> 
-          </Route> 
-      
-          <Route path = 'people' element={ persons ? <PersonsHome persons={persons} /> :  <Loading />} >
-            <Route index element = { persons ? <PersonList persons={persons} /> :  <Loading />} />
-            <Route path = 'new' element={ organisations && persons && details ? 
-              <PersonNew organisations={organisations} reloads={reloads} setReloads={setReloads} />  : <Loading />} />
-            <Route path = ':id' element={ persons ? <Person persons={persons}  />  : <Loading />} />         
-          </Route>
+            <Route path = 'venues' element={ venues ? <VenuesHome venues={venues} /> :  <Loading />} >
+              <Route index element = { venues ? <VenueList venues={venues} /> :  <Loading />} />
+              <Route path = 'new' element={ venues && addresses ? <VenueNew reloads={reloads} setReloads={setReloads} />  : <Loading />} />
+              <Route path = ':id' element={ venues ? <Venue venues={venues}  />  : <Loading />} />
+            </Route>
 
-          <Route path = 'venues' element={ venues ? <VenuesHome venues={venues} /> :  <Loading />} >
-            <Route index element = { venues ? <VenueList venues={venues} /> :  <Loading />} />
-            <Route path = 'new' element={ venues && addresses ? <VenueNew reloads={reloads} setReloads={setReloads} />  : <Loading />} />
-            <Route path = ':id' element={ venues ? <Venue venues={venues}  />  : <Loading />} />
-          </Route>
+            <Route path = 'bookings' element = { groups ? <GroupsHome groups={groups} /> :  <Loading />} >
+              <Route index element = { groups ? <GroupList groups={groups} /> :  <Loading />} />
+              <Route path = 'new' element = { groups && persons ? <GroupNew persons={persons} reloads={reloads} setReloads={setReloads} /> :  <Loading />} />
+              <Route path = ':id' element ={ groups ? <Group groups={groups}  />  : <Loading />} />
+              <Route path = ':id/gigs' element = { groups ? <GroupGigs groups={groups} nextGig={null} useNextGig={false}  />  : <Loading />} />
+              <Route path = ':id/messages' element = { groups ? <GroupMessages groups={groups} />  : <Loading />} />
+            </Route>
 
-          <Route path = 'bookings' element = { groups ? <GroupsHome groups={groups} /> :  <Loading />} >
-            <Route index element = { groups ? <GroupList groups={groups} /> :  <Loading />} />
-            <Route path = 'new' element = { groups && persons ? <GroupNew persons={persons} reloads={reloads} setReloads={setReloads} /> :  <Loading />} />
-            <Route path = ':id' element ={ groups ? <Group groups={groups}  />  : <Loading />} />
-            <Route path = ':id/gigs' element = { groups ? <GroupGigs groups={groups} nextGig={null} useNextGig={false}  />  : <Loading />} />
-            <Route path = ':id/messages' element = { groups ? <GroupMessages groups={groups} />  : <Loading />} />
-          </Route>
+            <Route path = 'acts' element={ acts ? <ActsHome acts={acts} /> :  <Loading />} >
+              <Route index element = { acts ? <ActList acts={acts} /> :  <Loading />} />
+              <Route path = 'new' element={ acts ? <ActNew reloads={reloads} setReloads={setReloads} />  : <Loading />} />
+              <Route path = ':id' element={ acts && gigs ? <Act acts={acts} gigs={gigs} />  : <Loading />} />
+            </Route>
 
-          <Route path = 'acts' element={ acts ? <ActsHome acts={acts} /> :  <Loading />} >
-            <Route index element = { acts ? <ActList acts={acts} /> :  <Loading />} />
-            <Route path = 'new' element={ acts ? <ActNew reloads={reloads} setReloads={setReloads} />  : <Loading />} />
-            <Route path = ':id' element={ acts && gigs ? <Act acts={acts} gigs={gigs} />  : <Loading />} />
-          </Route>
+            <Route path = 'organisations' element={ organisations ? <OrganisationsHome organisations={organisations} /> :  <Loading />} >
+              <Route index element = { organisations ? <OrganisationList organisations={organisations} /> :  <Loading />} />
+              <Route path = 'new' element={ organisations && addresses ? <OrganisationNew reloads={reloads} setReloads={setReloads}/>  : <Loading />} />
+              <Route path = ':id' element={ organisations ? <Organisation organisations={organisations}  />  : <Loading />} />
+            </Route>
 
-          <Route path = 'organisations' element={ organisations ? <OrganisationsHome organisations={organisations} /> :  <Loading />} >
-            <Route index element = { organisations ? <OrganisationList organisations={organisations} /> :  <Loading />} />
-            <Route path = 'new' element={ organisations && addresses ? <OrganisationNew reloads={reloads} setReloads={setReloads}/>  : <Loading />} />
-            <Route path = ':id' element={ organisations ? <Organisation organisations={organisations}  />  : <Loading />} />
-          </Route>
-
-          <Route path = 'messages' element={ messages ? <MessagesHome messages={messages} /> :  <Loading />} >
-            <Route index element = { messages ? <MessageList messages={messages} /> :  <Loading />} />
-            <Route path = 'new' element={ messages && groups ? <MessageNew groups={groups} reloads={reloads} setReloads={setReloads}/>  : <Loading />} />
-            <Route path = ':id' element={ messages ? <Message messages={messages}  />  : <Loading />} />
-          </Route>
-        </Routes>
+            <Route path = 'messages' element={ messages ? <MessagesHome messages={messages} /> :  <Loading />} >
+              <Route index element = { messages ? <MessageList messages={messages} /> :  <Loading />} />
+              <Route path = 'new' element={ messages && groups ? <MessageNew groups={groups} reloads={reloads} setReloads={setReloads}/>  : <Loading />} />
+              <Route path = ':id' element={ messages ? <Message messages={messages}  />  : <Loading />} />
+            </Route>
+          </Routes>
+        </div>
     </div>
   )
 }

@@ -9,7 +9,8 @@ const GigList = ({gigs, futureGigs}) => {
   
   const [view, setView] = useState(getInitialViewState());
   useEffect(() => {
-    localStorage.setItem("gigView", JSON.stringify(view))
+    localStorage.setItem("gigView", JSON.stringify(view));
+    console.log(view);
   }, [view]);
 
   const nextGig = (futureGigs.length > 0) ? futureGigs.filter(g => !isCancelled(g))[0] : null;
@@ -44,7 +45,7 @@ const GigList = ({gigs, futureGigs}) => {
       <div className="gig-list">
         
         <h1>Engagements</h1> 
-        <div className="gig-sublist">      
+        <div className="item-list">      
           {yearRows}       
         </div>     
       </div>

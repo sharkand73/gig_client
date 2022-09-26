@@ -21,14 +21,13 @@ const MessageList = ({ messages }) => {
   })};
 
   return (
-    <div className="message-list list">
-      
-      <h1>Messages</h1> 
-      <div className="">      
-        {messageRows}       
-      </div>     
-    </div>
+    <>
+      <div className="item-list">     
+        <div className="">      
+          {messageRows}       
+        </div>     
+      </div>
+    </>
   )};
-
 
 export default MessageList;

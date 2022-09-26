@@ -32,7 +32,7 @@ const Person = ({persons}) => {
           <div className = "td">Alt. Phone:</div><div className = "td">{person.details.altPhone}</div>
         </div>
         <div className = "tr">
-          <div>Email:</div><div className = "td">{person.details.email}</div>
+          <div className = "td">Email:</div><div className = "td">{person.details.email}</div>
         </div>
         <Back />
       </div>

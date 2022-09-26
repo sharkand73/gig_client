@@ -18,13 +18,14 @@ const PersonList = ({ persons }) => {
   })};
 
   return (
-    <div className="person-list list">
-      
+    <>
       <h1>People</h1> 
-      <div className="table">      
-        {personRows}       
-      </div>     
-    </div>
+      <div className="item-list">
+        <div className="table">      
+          {personRows}       
+        </div>     
+      </div>
+    </>
   )};
 
 

@@ -21,7 +21,7 @@ const NavBar = () => {
         <button className="crud" onClick={()=>setShowDropdown(!showDropdown)}>
           <FontAwesomeIcon icon={faBars} size="2x"/>
         </button>
-        <nav className={showDropdown? 'nav' : 'hide'}>
+        <nav id="nav" className={showDropdown? 'show' : 'hide'}>
           {navMenu}
         </nav>
       </div>

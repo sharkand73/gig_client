@@ -17,17 +17,18 @@ const GroupList = ({ groups }) => {
   })};
 
   return (
-    <div className="group-list list">
-      
-      <h1>Bookings</h1> 
-      <div className="table">  
-        <div className="tr">
-          <div className="td">Date</div>  
-          <div className="td">Booking Code</div>
-        </div>    
-        {groupRows}       
-      </div>     
-    </div>
+    <>
+      <h1>Bookings</h1>
+      <div className="item-list">       
+        <div className="table">  
+          <div className="tr">
+            <div className="td">Date</div>  
+            <div className="td">Booking Code</div>
+          </div>    
+          {groupRows}       
+        </div>     
+      </div>
+    </>
   )};
 
 

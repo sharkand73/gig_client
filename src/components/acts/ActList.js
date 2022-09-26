@@ -17,16 +17,14 @@ const ActList = ({ acts }) => {
   })};
 
   return (
-    <div className="act-list list">
-      
+    <>
       <h1>Acts</h1> 
-      <div className="table">  
-        <div className="tr">
-          <div className="td">Name</div> 
-        </div>    
-        {actRows}       
-      </div>     
-    </div>
+      <div className="item-list">
+        <div className="table">  
+          {actRows}       
+        </div>     
+      </div>
+    </>
   )};
 
 

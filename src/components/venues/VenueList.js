@@ -18,13 +18,14 @@ const VenueList = ({ venues }) => {
   })};
 
   return (
-    <div className="venue-list list">
-      
+    <>
       <h1>Venues</h1> 
-      <div className="table">      
-        {venueRows}       
-      </div>     
-    </div>
+      <div className="item-list">
+        <div className="table">      
+          {venueRows}       
+        </div>     
+      </div>
+    </>
   )};
 
 
