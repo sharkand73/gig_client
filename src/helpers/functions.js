@@ -1,3 +1,5 @@
+import { useEffect, useRef } from 'react';
+
 import Moment from 'react-moment';
 
 export const dateTimeStringToDate = (dateTimeString) => {
@@ -77,3 +79,17 @@ export const sortObjectsChronologically = (objList, property, asc) => {
 
 export const objectsAreEqual = (object1, object2) => (JSON.stringify(object1) === JSON.stringify(object2));
 
+export const useOutsideClick = (callBack) => {
+  const ref = useRef();
+  useEffect(() => {
+    const handleClick = (event) => {
+      if (ref.current && !ref.current.contains(event.target)){
+        callBack();
+      }
+    };
+    document.addEventListener('click', handleClick);
+    return () => { document.removeEventListener('click', handleClick);
+  };
+}, [ref]);
+return ref;
+};
