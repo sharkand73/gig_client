@@ -1,28 +1,42 @@
-import React, { useEffect, useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Navigate, useParams } from 'react-router-dom';
 import Request from  '../../helpers/request';
-import { emptyAct, dressCodeOptions } from '../../helpers/formHelper';
+import { dressCodeOptions, emptyAct } from '../../helpers/formHelper';
 import Loading from '../Loading';
 import ActStyles from './ActStyles';
 import ActSkills from './ActSkills';
+import Error from '../Error';
+import { findById } from '../../helpers/functions';
 
-const ActNew = ({ reloads, setReloads }) => {
+const ActEdit = ({ reloads, setReloads, acts }) => {
     
     const [showStyles, setShowStyles] = useState(false);
     const [showSkills, setShowSkills] = useState(false);
     const [actData, setActData] = useState(emptyAct);
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [formProcessed, setFormProcessed] = useState(false);
+    const id  = parseInt(useParams().id);
+    const act = findById(acts, id);
+   
+    if (!act){
+      return (
+        <Error entity = {"act"} />
+      )
+    };
+    
+    if (actData === emptyAct){setActData(act);}
+
 
     const handleSubmit = (e) => {
     e.preventDefault();
+    throw(console.error());
     setFormSubmitted(true);
     postAct(actData); 
 }
 
     const postAct = (act) => {
         const request = new Request();
-        request.post('/acts', act)
+        request.put(`/acts/${id}`, act)
         .then(res => res.json())
         .then((data) => {
             console.log('data back from db', data);
@@ -101,4 +115,4 @@ const ActNew = ({ reloads, setReloads }) => {
     )
 }
 
-export default ActNew;
+export default ActEdit;

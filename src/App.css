@@ -66,7 +66,7 @@ NavBar {
   margin: auto;
 }
 
-button {
+.nav-button {
   background-color: white;
   border-style: solid;
   border-width: 3px;
@@ -235,7 +235,8 @@ a:visited {
 
 
 .form-container {
-  width: 50%;
+  position: relative;
+  width: 70%;
   margin-top: 30px;
   background-color: #ddd;
   padding: 5px;
@@ -243,11 +244,21 @@ a:visited {
 
 .form-group{
   padding: 2px;
+  width: 100%;
 } 
 
 .form-button {
   float: right;
 } 
+
+.selector {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  background-color: #eee;
+  width: 70%;
+  padding: 5px;
+}
 
 .edit {
  background-color: lightgreen;
@@ -265,13 +276,23 @@ a:visited {
   background-color: lightgray;
 }
 
-.form-group {
-  width: 100%;
-}
-
-label {
+.label {
   display: inline-block;
   width: 60%; 
+}
+
+.stylesskills {
+  width: 30%;
+}
+
+.checkbox-label {
+  display: inline-block;
+  width: 60%;
+}
+
+.checkbox-column {
+  display: inline-block;
+  width: 50%;
 }
 
 input {

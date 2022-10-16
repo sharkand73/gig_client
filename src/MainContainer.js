@@ -30,6 +30,7 @@ import ActsHome from './components/acts/ActsHome';
 import ActList from './components/acts/ActList';
 import Act from './components/acts/Act';
 import ActNew from './components/acts/ActNew';
+import ActEdit from './components/acts/ActEdit';
 
 import VenuesHome from './components/venues/VenuesHome';
 import VenueList from './components/venues/VenueList';
@@ -105,6 +106,7 @@ const MainContainer = ({ addresses, details, organisations, persons,
               <Route index element = { acts ? <ActList acts={acts} /> :  <Loading />} />
               <Route path = 'new' element={ acts ? <ActNew reloads={reloads} setReloads={setReloads} />  : <Loading />} />
               <Route path = ':id' element={ acts && gigs ? <Act acts={acts} gigs={gigs} />  : <Loading />} />
+              <Route path = 'edit/:id' element={ acts ? <ActEdit acts={acts} reloads={reloads} setReloads={setReloads} />  : <Loading />} />
             </Route>
 
             <Route path = 'organisations' element={ organisations ? <OrganisationsHome organisations={organisations} /> :  <Loading />} >

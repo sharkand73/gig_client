@@ -48,6 +48,8 @@ export const emptyAct = {
     name: '',
     prepRequired: false,
     defaultDressCode: "UNKNOWN",
+    styles: [],
+    skillsRequired: [],
     id: null
 };
 

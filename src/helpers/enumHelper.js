@@ -9,8 +9,12 @@ export const gigTypes = ['REHEARSAL', 'MUSIC_SOCIETY', 'JAZZ_FESTIVAL', 'FESTIVA
                     'BACKGROUND', 'PUB', 'JAZZ', 'FUNCTION', 'WEDDING', 'RECORDING', 'OTHER'];
 export const paymentMethods = ['BACS', 'CASH', 'CHEQUE'];
 export const instrumentNames = [];
-export const skillNames = [];
-export const styleNames = [];
+export const skillNames = ['READING', 'IMPROVISING', 'JAZZ_STANDARDS', 'CHORD_CHARTS', 'LEARNING_SONGS',
+    'DOUBLING', 'ARCO'];
+export const styleNames = ['JAZZ', 'BEBOP', 'VOCAL_JAZZ', 'BIG_BAND', 'SWING',
+    'GYPSY_JAZZ', 'MODERN_JAZZ', 'NEW_ORLEANS', 'DIXIELAND', 'EARLY_JAZZ', 'FUSION',
+    'FUNK', 'SOUL', 'WEST_END_MUSICAL', 'CABARET', 'BLUES', 'FOLK', 'ROCK_N_ROLL',
+    'SINGER_SONGWRITER', 'ROCK', 'POP', 'COVERS', 'LATIN'];
 export const venueTypes = ['LARGE_THEATRE', 'MEDIUM_THEATRE', 'SMALL_THEATRE',
                     'CONCERT_HALL', 'TOWN_HALL', 'VILLAGE_HALL', 'PUB',
                     'JAZZ_CLUB', 'HOTEL', 'RESTAURANT', 'HOTEL_RESTAURANT', 
