@@ -237,8 +237,13 @@ a:visited {
 .form-container {
   width: 50%;
   margin-top: 30px;
-  background-color: white;
+  background-color: #ddd;
+  padding: 5px;
 }
+
+.form-group{
+  padding: 2px;
+} 
 
 .form-button {
   float: right;
@@ -260,12 +265,26 @@ a:visited {
   background-color: lightgray;
 }
 
-form > div > label {
-  width: 30%; 
+.form-group {
+  width: 100%;
 }
 
-form > div > input {
-  width: 30%;
+label {
+  display: inline-block;
+  width: 60%; 
+}
+
+input {
+  display: inline-block;
+  width: 35%;
+}
+
+input[type=checkbox] {
+  width: auto;
+}
+
+input[type=submit] {
+  margin-top: 10px;
 }
 
 .back {

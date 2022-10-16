@@ -40,31 +40,31 @@ const ActNew = ({ reloads, setReloads }) => {
     }
 
     return (
+        <>
         <div className = 'form-container'>
-            <div>
-                <form onSubmit={handleSubmit} >
-                    <div>
-                        <label htmlFor='name'>Name</label>
-                        <input type='text' name='name' value={actData.name} onChange = {onActChange} required />
-                    </div>
-                    <div>
-                        <label htmlFor='defaultDressCode'>Default Dress Code</label>
-                        <select name='defaultDressCode' value={actData.defaultDressCode} onChange={onActChange} required>
-                            {dressCodeOptions}
-                        </select>
-                    </div>
-                    <div>
-                        <label htmlFor='prepRequired'>Prep Required</label>
-                        <input type='checkbox' name='prepRequired' value={actData.prepRequired} onChange = {onPrepRequiredChange} />
-                    </div>
-                    <div>
-                        <input type='submit' value='Save' />  
-                    </div>         
-                </form>
-                {formSubmitted && <Loading />}
-                {formProcessed && <Navigate to='/acts' /> }
-            </div>
+            <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <label htmlFor='name'>Name</label>
+                    <input type='text' name='name' value={actData.name} onChange = {onActChange} required />
+                </div>
+                <div className="form-group">
+                    <label htmlFor='defaultDressCode'>Default Dress Code</label>
+                    <select name='defaultDressCode' value={actData.defaultDressCode} onChange={onActChange} required>
+                        {dressCodeOptions}
+                    </select>
+                </div>
+                <div className="form-group">
+                    <label htmlFor='prepRequired'>Prep Required</label>
+                    <input type='checkbox' name='prepRequired' value={actData.prepRequired} onChange = {onPrepRequiredChange} />
+                </div>
+                <div className="form-group">
+                    <input type='submit' value='Save' />  
+                </div>         
+            </form>
+            {formSubmitted && <Loading />}
+            {formProcessed && <Navigate to='/acts' /> }
         </div>
+    </>
     )
 }
 
