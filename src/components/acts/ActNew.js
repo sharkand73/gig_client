@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import Request from  '../../helpers/request';
 import { emptyAct, dressCodeOptions } from '../../helpers/formHelper';
@@ -6,7 +6,7 @@ import Loading from '../Loading';
 import ActStyles from './ActStyles';
 import ActSkills from './ActSkills';
 
-const ActNew = ({ reloads, setReloads }) => {
+const ActNew = ({ reloads, setReloads, skills, styles }) => {
     
     const [showStyles, setShowStyles] = useState(false);
     const [showSkills, setShowSkills] = useState(false);
@@ -16,9 +16,14 @@ const ActNew = ({ reloads, setReloads }) => {
 
     const handleSubmit = (e) => {
     e.preventDefault();
+    // Couldn't find the source of the erratic behaviour
+    // so the following line is to stop it
+    if (showSkills || showStyles) {
+        return;
+    }
     setFormSubmitted(true);
     postAct(actData); 
-}
+    }   
 
     const postAct = (act) => {
         const request = new Request();
@@ -88,8 +93,8 @@ const ActNew = ({ reloads, setReloads }) => {
                     <span>({actData.skillsRequired.length})&nbsp;&nbsp;</span>
                     <button onClick={()=>onShowSkills()}>Select Skills</button>
                 </div>
-                { showStyles && <ActStyles actData={actData} setActData={setActData} onClose={onClose} />}
-                { showSkills && <ActSkills actData={actData} setActData={setActData} onClose={onClose} />}                
+                { showStyles && <ActStyles actData={actData} setActData={setActData} styles={styles} onClose={onClose} />}
+                { showSkills && <ActSkills actData={actData} setActData={setActData} skills={skills} onClose={onClose} />}                
                 <div className="form-group">
                     <input type='submit' value='Save' />  
                 </div>         

@@ -18,7 +18,7 @@ const Group = ({ groups }) => {
     };
 
     return (
-      <div className = "table">
+      <div className = "table mtop">
         <div className = "tr">
           <div className = "td">Booking Code:</div><div className = "td">{group.bookingCode}</div>
         </div>

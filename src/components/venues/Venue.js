@@ -18,7 +18,7 @@ const Venue = ({venues}) => {
     };
 
     return (
-      <div className = "table">
+      <div className = "table mtop">
         <div className = "tr">
           <div className = "td">Name:</div><div className = "td">{venue.name}</div>
         </div>

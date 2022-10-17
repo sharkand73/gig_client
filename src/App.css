@@ -145,8 +145,11 @@ Asterisk {
   padding: 5px 10px;
   border-color: #bbb;
   border-style: solid;
-  border-width: 1px;
-  
+  border-width: 1px;  
+}
+
+.sticky {
+  position: sticky;
 }
 
 .money {
@@ -240,6 +243,10 @@ a:visited {
   margin-top: 30px;
   background-color: #ddd;
   padding: 5px;
+}
+
+.mtop {
+  margin-top: 30px;
 }
 
 .form-group{

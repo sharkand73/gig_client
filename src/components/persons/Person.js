@@ -18,7 +18,7 @@ const Person = ({persons}) => {
     };
 
     return (
-      <div className = "table">
+      <div className = "table mtop">
         <div className = "tr">
           <div className = "td">First Name:</div><div className = "td">{person.firstName}</div>
         </div>

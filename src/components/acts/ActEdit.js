@@ -1,42 +1,35 @@
 import React, { useState } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { dressCodeOptions } from '../../helpers/formHelper';
 import Request from  '../../helpers/request';
-import { dressCodeOptions, emptyAct } from '../../helpers/formHelper';
 import Loading from '../Loading';
 import ActStyles from './ActStyles';
 import ActSkills from './ActSkills';
-import Error from '../Error';
-import { findById } from '../../helpers/functions';
 
-const ActEdit = ({ reloads, setReloads, acts }) => {
+
+const ActEdit = ({ reloads, setReloads, act, skills, styles }) => {
     
     const [showStyles, setShowStyles] = useState(false);
     const [showSkills, setShowSkills] = useState(false);
-    const [actData, setActData] = useState(emptyAct);
+    const [actData, setActData] = useState(act);
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [formProcessed, setFormProcessed] = useState(false);
-    const id  = parseInt(useParams().id);
-    const act = findById(acts, id);
+    const navigate = useNavigate();
    
-    if (!act){
-      return (
-        <Error entity = {"act"} />
-      )
-    };
-    
-    if (actData === emptyAct){setActData(act);}
-
-
     const handleSubmit = (e) => {
-    e.preventDefault();
-    throw(console.error());
-    setFormSubmitted(true);
-    postAct(actData); 
-}
+        e.preventDefault();
+        // Couldn't find the source of the erratic behaviour
+        // so the following line is to stop it
+        if (showSkills || showStyles) {
+            return;
+        }
+        setFormSubmitted(true);
+        postAct(actData); 
+    }
 
     const postAct = (act) => {
         const request = new Request();
-        request.put(`/acts/${id}`, act)
+        request.put(`/acts/${act.id}`, act)
         .then(res => res.json())
         .then((data) => {
             console.log('data back from db', data);
@@ -70,8 +63,6 @@ const ActEdit = ({ reloads, setReloads, acts }) => {
     const onClose = () => {
         setShowStyles(false);
         setShowSkills(false);
-        console.log(actData.skillsRequired);
-        console.log(actData.styles);
     }
 
     return (
@@ -102,14 +93,15 @@ const ActEdit = ({ reloads, setReloads, acts }) => {
                     <span>({actData.skillsRequired.length})&nbsp;&nbsp;</span>
                     <button onClick={()=>onShowSkills()}>Select Skills</button>
                 </div>
-                { showStyles && <ActStyles actData={actData} setActData={setActData} onClose={onClose} />}
-                { showSkills && <ActSkills actData={actData} setActData={setActData} onClose={onClose} />}                
+                { showStyles && <ActStyles actData={actData} styles={styles} setActData={setActData} onClose={onClose} />}
+                { showSkills && <ActSkills actData={actData} skills={skills} setActData={setActData} onClose={onClose} />}                
                 <div className="form-group">
-                    <input type='submit' value='Save' />  
+                    <input type='submit' value='Save' disabled={showSkills || showStyles}/>  
+                    <button onClick={() => navigate(`/acts/${act.id}`)}>Cancel</button>
                 </div>         
             </form>
-            {formSubmitted && <Loading />}
-            {formProcessed && <Navigate to='/acts' /> }
+            { formSubmitted && <Loading />}
+            { formProcessed && <Navigate to='/acts' /> }
         </div>
     </>
     )

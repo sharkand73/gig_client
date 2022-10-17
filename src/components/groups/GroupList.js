@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { dateTimeStringToShortDate } from '../../helpers/functions';
+import { sortObjectsChronologically } from '../../helpers/functions';
 
 const GroupList = ({ groups }) => {
 
   let groupRows = {};
   if (groups){
-  groupRows = groups.map((group, index) => {
+    let oGroups = sortObjectsChronologically(groups, 'bookingDate', false);
+    groupRows = oGroups.map((group, index) => {
     
     return (
         <Link to={group.id.toString()} key={index} className="tr">  
@@ -21,7 +23,7 @@ const GroupList = ({ groups }) => {
       <h1>Bookings</h1>
       <div className="item-list">       
         <div className="table">  
-          <div className="tr">
+          <div className="tr sticky">
             <div className="td">Date</div>  
             <div className="td">Booking Code</div>
           </div>    

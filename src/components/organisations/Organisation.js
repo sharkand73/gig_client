@@ -18,7 +18,7 @@ const Organisation = ({organisations}) => {
     };
 
     return (
-      <div className = "table">
+      <div className = "table mtop">
         <div className = "tr">
           <div className = "td">Name:</div><div className = "td">{organisation.name}</div>
         </div>

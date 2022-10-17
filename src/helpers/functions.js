@@ -39,7 +39,10 @@ export const addDay = (dateString) => {
 };
 
 export const findById = (objList, id) => {
-    return objList.find((item) => item.id === id);
+  if (typeof(id)==='string'){
+    id = parseInt(id);
+  }
+  return objList.find((item) => item.id === id);
   }
 
 export const sortAsc = (numberList) => numberList.sort((a,b) => a - b); 

@@ -1,32 +1,33 @@
 import React from "react";
-import { styleNames, convertEnumToString } from "../../helpers/enumHelper";
+import { convertEnumToString } from "../../helpers/enumHelper";
+import { findById } from "../../helpers/functions";
 
-const ActStyles = ({ onClose, actData, setActData }) => {
+const ActStyles = ({ onClose, styles, actData, setActData }) => {
 
     const isChecked = (style) => {
-        return actData.styles.includes(style);
+        return actData.styles.map(s => s.id).includes(style.id);
     }
 
     const onChange = (e) => {
-        let style = e.target.value;
-        let styles = actData.styles;
-        console.log(style);
-        if (!styles.includes(style)){
-            styles.push(style);
-            setActData({...actData, styles: styles});
+        let style = findById(styles, e.target.value);
+        let actStyles = actData.styles;
+        let idList = actStyles.map(s => s.id);
+        if (!idList.includes(style.id)){
+            actStyles.push(style);
+            setActData({...actData, styles: actStyles});
             return;
         }
-        let i = styles.indexOf(style);
-        styles.splice(i, 1);
-        setActData({...actData, styles: styles});
+        let i = idList.indexOf(style.id);
+        actStyles.splice(i, 1);
+        setActData({...actData, styles: actStyles});
     }
 
-    const styleNameControls = styleNames.map((styleName, i) =>{
+    const styleNameControls = styles.map((style, i) =>{        
         return (
             <div key={i}>
                 <label className='label stylesskills'>{i===0? "Styles" : null}</label>
-                <input type="checkbox" name={styleName} value={styleName} checked={isChecked(styleName)} onChange={onChange}/>
-                <label className='checkbox-label'>{convertEnumToString(styleName)}</label>
+                <input type="checkbox" name={style.name} value={style.id} checked={isChecked(style)} onChange={onChange}/>
+                <label className='checkbox-label'>{convertEnumToString(style.name)}</label>
             </div>
         )
     });

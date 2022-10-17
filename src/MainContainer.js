@@ -30,7 +30,7 @@ import ActsHome from './components/acts/ActsHome';
 import ActList from './components/acts/ActList';
 import Act from './components/acts/Act';
 import ActNew from './components/acts/ActNew';
-import ActEdit from './components/acts/ActEdit';
+import ActEditHome from './components/acts/ActEditHome';
 
 import VenuesHome from './components/venues/VenuesHome';
 import VenueList from './components/venues/VenueList';
@@ -48,7 +48,7 @@ import Message from './components/messages/Message';
 import MessageNew from './components/messages/MessageNew';
 
 const MainContainer = ({ addresses, details, organisations, persons,  
-                        messages, venues, acts, groups, bookings, gigs, 
+                        messages, venues, skills, styles, acts, groups, bookings, gigs, 
                         setAddresses, setDetails, setOrganisations, setPersons, 
                         setMessages, setVenues, setActs, setGroups, setBookings, setGigs, 
                         nextGig, reloads, setReloads}) => {
@@ -104,9 +104,9 @@ const MainContainer = ({ addresses, details, organisations, persons,
 
             <Route path = 'acts' element={ acts ? <ActsHome acts={acts} /> :  <Loading />} >
               <Route index element = { acts ? <ActList acts={acts} /> :  <Loading />} />
-              <Route path = 'new' element={ acts ? <ActNew reloads={reloads} setReloads={setReloads} />  : <Loading />} />
+              <Route path = 'new' element={ acts ? <ActNew reloads={reloads} setReloads={setReloads} skills={skills} styles={styles} />  : <Loading />} />
               <Route path = ':id' element={ acts && gigs ? <Act acts={acts} gigs={gigs} />  : <Loading />} />
-              <Route path = 'edit/:id' element={ acts ? <ActEdit acts={acts} reloads={reloads} setReloads={setReloads} />  : <Loading />} />
+              <Route path = 'edit/:id' element={ acts && skills && styles ? <ActEditHome acts={acts} reloads={reloads} setReloads={setReloads} skills={skills} styles={styles} />  : <Loading />} />
             </Route>
 
             <Route path = 'organisations' element={ organisations ? <OrganisationsHome organisations={organisations} /> :  <Loading />} >
