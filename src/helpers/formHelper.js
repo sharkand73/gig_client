@@ -38,6 +38,17 @@ export const emptyVenue = {
     id: null
 };
 
+export const parseVenue = (venue) => {
+    return {
+        name: venue.name,
+        venueType: venue.venueType,
+        address: venue.address,
+        coordinatesE: venue.coordinatesE,
+        coordinatesN: venue.coordinatesN,
+        id: venue.id
+    }
+}
+
 export const emptyOrganisation = {
     name: '',
     address: null,

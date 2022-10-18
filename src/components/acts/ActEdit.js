@@ -97,7 +97,7 @@ const ActEdit = ({ reloads, setReloads, act, skills, styles }) => {
                 { showSkills && <ActSkills actData={actData} skills={skills} setActData={setActData} onClose={onClose} />}                
                 <div className="form-group">
                     <input type='submit' value='Save' disabled={showSkills || showStyles}/>  
-                    <button onClick={() => navigate(`/acts/${act.id}`)}>Cancel</button>
+                    <button onClick={() => navigate(`/acts`)}>Cancel</button>
                 </div>         
             </form>
             { formSubmitted && <Loading />}

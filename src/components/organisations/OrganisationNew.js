@@ -68,37 +68,37 @@ const OrganisationNew = ({reloads, setReloads }) => {
         <div className = 'form-container'>
             <div>
                 <form onSubmit={handleSubmit} >
-                    <div>
-                        <label htmlFor='name'>Name</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor='name'>Name</label>
                         <input type='text' name='name' value={organisationData.name} onChange = {onOrganisationChange} required />
                     </div>
-                    <div>
-                        <label htmlFor='addressLine1'>Address Line 1</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor='addressLine1'>Address Line 1</label>
                         <input type='text' name='addressLine1' value={addressData.addressLine1} onChange = {onAddressChange} />
                     </div>
-                    <div>
-                        <label htmlFor='addressLine2'>Address Line 2</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor='addressLine2'>Address Line 2</label>
                         <input type='text' name='addressLine2' value={addressData.addressLine2} onChange = {onAddressChange} />
                     </div>
-                    <div>
-                        <label htmlFor='city' >City</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor='city' >City</label>
                         <input type='text' name='city' value={addressData.city} onChange = {onAddressChange} />
                     </div>
-                    <div>
-                        <label htmlFor='region'>Region</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor='region'>Region</label>
                         <input type='text' name='region' value={addressData.region} onChange = {onAddressChange}/>
                     </div>
-                    <div>
-                        <label htmlFor='postcode'>Postcode</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor='postcode'>Postcode</label>
                         <input type='text' name='postcode' value={addressData.postcode} onChange = {onAddressChange} />
                     </div>
-                    <div>
-                        <label htmlFor='country'>Country</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor='country'>Country</label>
                         <select name='country' value={addressData.country} onChange = {onAddressChange} >
                         {countryOptions}
                         </select>
                     </div>          
-                    <div>
+                    <div className="form-group">
                         <input type='submit' value='Submit' />  
                     </div>         
                 </form>

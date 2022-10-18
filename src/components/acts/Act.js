@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import { dateTimeStringToShortDate, findById, sortObjectsChronologically } from '../../helpers/functions';
 import { convertEnumToString } from '../../helpers/enumHelper';
 import Back from '../buttons/Back';
@@ -34,6 +34,9 @@ const Act = ({ acts, gigs }) => {
 
     return (
       <div className = "table mtop">
+        <Link to={`/acts/edit/${act.id}`}>       
+          <Edit />
+        </Link>
         <div className = "tr">
           <div className = "td">Name:</div><div className = "td">{act.name}</div>
         </div>
@@ -55,8 +58,7 @@ const Act = ({ acts, gigs }) => {
           <div className = "td">Last Played With:</div>
           <div className = "td">{dateTimeStringToShortDate(pastActGigs[0].startTime)}</div>
         </div>}
-        <div>          
-          <Edit onClick={() => navigate(`/acts/edit/${act.id}`)}/>
+        <div>   
           <Back />
         </div>
       </div>

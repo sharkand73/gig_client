@@ -151,102 +151,102 @@ const GigNew = ({venues, acts, groups, reloads, setReloads}) => {
         <div className = 'form-container'>
             <div>
                 <form onSubmit={handleSubmit} >
-                    <div>
-                        <label htmlFor="date">Date</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor="date">Date</label>
                         <input type="date" value={eventDate} onChange={(e)=>setEventDate(e.target.value)} required/>
                     </div>
-                    <div>
-                        <label htmlFor="venue">Venue</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor="venue">Venue</label>
                         <select name="venue" onChange={onSelectChange} defaultValue='' required>
                             <option disabled value=''>Select Venue</option>
                             {venueOptions}
                         </select>
                     </div>
-                    <div>
-                        <label htmlFor="act">Act</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor="act">Act</label>
                         <select name="act" onChange={onSelectChange} defaultValue='' required>
                         <option disabled value=''>Select Act</option>
                             {actOptions}
                         </select>
                     </div>
-                    <div>
-                        <label htmlFor="arrivalTime">Arrival Time</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor="arrivalTime">Arrival Time</label>
                         <input type='time' step='300' name='arrival' value={times.arrival} onChange={onTimeChange} required />
                     </div>
-                    <div>
-                        <label htmlFor="startTime">Start Time</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor="startTime">Start Time</label>
                         <input type='time' step='300' name='start' value={times.start} onChange={onTimeChange} required />
                     </div>
-                    <div>
-                        <label htmlFor="endTime">End Time</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor="endTime">End Time</label>
                         <input type='time' step='300' name='end' value={times.end} onChange={onTimeChange} required />
                     </div>
-                    <div>
-                        <label htmlFor="Playing Time">Playing Time</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor="Playing Time">Playing Time</label>
                         <input type='number' min={0} max={300} step={10} name='playingTime' value={gigData.playingTime} onChange={onGigChange} required />
                     </div>
-                    <div>
-                        <label htmlFor="Gig Type">Gig Type</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor="Gig Type">Gig Type</label>
                         <select name="gigType" value={gigData.gigType} onChange={onGigChange} required>
                             {gigTypeOptions}
                         </select>
                     </div>
-                    <div>
-                        <label htmlFor="Dress Code">Dress Code</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor="Dress Code">Dress Code</label>
                         <select name="dressCode" value={gigData.dressCode} onChange={onGigChange} required>
                             {dressCodeOptions}
                         </select>
                     </div>
-                    <div>
-                        <label htmlFor="Sound Check">Sound Check</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor="Sound Check">Sound Check</label>
                         <input type="checkbox" name="soundCheck" value={gigData.soundCheck} onChange={onCheckBoxChange} />
                     </div>
-                    <div>
-                        <label htmlFor="Food Provided">Food Provided</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor="Food Provided">Food Provided</label>
                         <input type="checkbox" name="foodProvided" value={gigData.foodProvided} onChange={onCheckBoxChange} />
                     </div>
-                    <div>
-                        <label htmlFor="Distance Driven">Distance Driven</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor="Distance Driven">Distance Driven</label>
                         <input type='number' min={0} max={2000} step={1} name='distanceDriven' value={gigData.distanceDriven} onChange={onGigChange} required/>
                     </div>
-                    <div>
-                        <label htmlFor="Money Spent">Money Spent</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor="Money Spent">Money Spent</label>
                         <input type='number' min={0} max={300} step={0.01} name='moneySpent' value={gigData.moneySpent} onChange={onGigChange} />
                     </div>
-                    <div>
-                        <label htmlFor="Booking Group">Booking</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor="Booking Group">Booking</label>
                         <select name="bookingGroup" onChange={onGroupChange} defaultValue='' required>
                             <option disabled value=''>Select Booking Code</option>
                             {groupOptions}
                         </select>
                     </div>
-                    <div>
-                        <label htmlFor="Fee">Fee</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor="Fee">Fee</label>
                         <input type='number' min={0} max={2000} step={0.01} name='fee' value={bookingData.fee} onChange={onBookingChange} required/>
                     </div>
-                    <div>
-                        <label htmlFor="status">Status</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor="status">Status</label>
                         <select name="status" onChange={onBookingChange} required>
                             {statusOptions}
                         </select>
                     </div>
                     {bookingData.status !== 'UNCONFIRMED' && <div>
-                        <label htmlFor="dateConfirmed">Date Confirmed</label>
+                        <label className="label" htmlFor="dateConfirmed">Date Confirmed</label>
                         <input type="date" name='dateConfirmed' value={bookingData.dateConfirmed} onChange={onBookingChange} />
                     </div>}
                     {bookingData.status === 'CANCELLED' && <div>
-                        <label htmlFor="dateCancelled">Date Cancelled</label>
+                        <label className="label" htmlFor="dateCancelled">Date Cancelled</label>
                         <input type="date" name='dateCancelled' value={bookingData.dateCancelled} onChange={onBookingChange} />
                     </div>}
                     {(bookingData.status==='CLOSED' || bookingData.status==='CANCELLED') && <div>
-                        <label htmlFor="dateFeePaid">Date Fee Paid</label>
+                        <label className="label" htmlFor="dateFeePaid">Date Fee Paid</label>
                         <input type="date" name='dateFeePaid' value={bookingData.dateFeePaid} onChange={onBookingChange} />
                     </div>}
                     {(bookingData.status==='CLOSED' || bookingData.status==='CANCELLED') && <div>
-                        <label htmlFor="dateExpensesPaid">Date Expenses Paid</label>
+                        <label className="label" htmlFor="dateExpensesPaid">Date Expenses Paid</label>
                         <input type="date" name='dateExpensesPaid' value={bookingData.dateExpensesPaid} onChange={onBookingChange} />
                     </div>}
-                    <div>
+                    <div className="form-group">
                         <input type="submit" value="Save" />
                     </div>
                 </form>            

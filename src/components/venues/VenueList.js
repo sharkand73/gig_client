@@ -28,5 +28,4 @@ const VenueList = ({ venues }) => {
     </>
   )};
 
-
 export default VenueList;

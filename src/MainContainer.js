@@ -36,6 +36,7 @@ import VenuesHome from './components/venues/VenuesHome';
 import VenueList from './components/venues/VenueList';
 import Venue from './components/venues/Venue';
 import VenueNew from './components/venues/VenueNew';
+import VenueEditHome from './components/venues/VenueEditHome';
 
 import OrganisationsHome from './components/organisations/OrganisationsHome';
 import OrganisationList from './components/organisations/OrganisationList';
@@ -92,6 +93,7 @@ const MainContainer = ({ addresses, details, organisations, persons,
               <Route index element = { venues ? <VenueList venues={venues} /> :  <Loading />} />
               <Route path = 'new' element={ venues && addresses ? <VenueNew reloads={reloads} setReloads={setReloads} />  : <Loading />} />
               <Route path = ':id' element={ venues ? <Venue venues={venues}  />  : <Loading />} />
+              <Route path = 'edit/:id' element={ venues ? <VenueEditHome venues={venues} reloads={reloads} setReloads={setReloads} />  : <Loading />} />
             </Route>
 
             <Route path = 'bookings' element = { groups ? <GroupsHome groups={groups} /> :  <Loading />} >

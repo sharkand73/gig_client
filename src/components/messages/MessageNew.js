@@ -73,29 +73,29 @@ const MessageNew = ({groups, reloads, setReloads }) => {
         <div className = 'form-container'>
             <div>
                 <form onSubmit={handleSubmit} >
-                    <div>
-                        <label htmlFor='date'>Message Date</label>
+                    <div className="form-group">
+                        <label  className="label" htmlFor='date'>Message Date</label>
                         <input type='date' name='date' value={messageData.date} onChange = {onChange} required />
                     </div>
-                    <div>
-                        <label htmlFor='messageType'>Booking Number</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor='messageType'>Booking Number</label>
                         <select name='group' onChange={onGroupChange} value={getBookingGroupValue()} >
                             <option value={-1}>None</option>
                             {bookingGroupOptions}
                         </select>
                     </div>
-                    <div>
-                        <label htmlFor='bookingMethod'>Booking Method </label>
+                    <div className="form-group">
+                        <label className="label" htmlFor='bookingMethod'>Booking Method </label>
                         <select name='bookingMethod' value={messageData.bookingMethod} onChange = {onChange} >
                             <option disabled value=''>Select a booking method</option>
                             {methodOptions}
                         </select>
                     </div>
-                    <div>
-                        <label htmlFor='body'>Message Body</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor='body'>Message Body</label>
                         <textarea maxLength={1000} name='body' value={messageData.body} onChange = {onChange} rows="10"></textarea>
                     </div>
-                    <div>
+                    <div className="form-group">
                         <input type='submit' value='Save' />  
                     </div>         
                 </form>

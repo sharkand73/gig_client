@@ -107,64 +107,64 @@ const PersonNew = ({organisations, reloads, setReloads }) => {
         <div className = 'form-container'>
             <div>
                 <form onSubmit={handleSubmit} >
-                    <div>
-                        <label htmlFor='firstName'>First Name</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor='firstName'>First Name</label>
                         <input type='text' name='firstName' value={personData.firstName} onChange = {onPersonChange} required />
                     </div>
-                    <div>
-                        <label htmlFor='lastName'>Last Name</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor='lastName'>Last Name</label>
                         <input type='text' name='lastName' value={personData.lastName} onChange = {onPersonChange} required />
                     </div>
-                    <div>
-                        <label htmlFor='organisation'>Organisation</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor='organisation'>Organisation</label>
                         <select name='organisation' onChange={onOrgChange} >
                             <option key={0} value={0}>None</option>
                             {organisationOptions}
                         </select>
                     </div>
-                    <div>
-                        <label htmlFor='addressLine1'>Address Line 1</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor='addressLine1'>Address Line 1</label>
                         <input type='text' name='addressLine1' value={addressData.addressLine1} onChange = {onAddressChange} />
                     </div>
-                    <div>
-                        <label htmlFor='addressLine2'>Address Line 2</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor='addressLine2'>Address Line 2</label>
                         <input type='text' name='addressLine2' value={addressData.addressLine2} onChange = {onAddressChange} />
                     </div>
-                    <div>
-                        <label htmlFor='city' >City</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor='city' >City</label>
                         <input type='text' name='city' value={addressData.city} onChange = {onAddressChange} />
                     </div>
-                    <div>
-                        <label htmlFor='region'>Region</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor='region'>Region</label>
                         <input type='text' name='region' value={addressData.region} onChange = {onAddressChange}/>
                     </div>
-                    <div>
-                        <label htmlFor='postcode'>Postcode</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor='postcode'>Postcode</label>
                         <input type='text' name='postcode' value={addressData.postcode} onChange = {onAddressChange} />
                     </div>
-                    <div>
-                        <label htmlFor='country'>Country</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor='country'>Country</label>
                         <select name='country' value={addressData.country} onChange = {onAddressChange} >
                         {countryOptions}
                         </select>
                     </div>
-                    <div>
-                        <label htmlFor='mobile'>Mobile</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor='mobile'>Mobile</label>
                         <input type='text' name='mobile' value={detailsData.mobile} onChange = {onDetailsChange} />
                     </div>
-                    <div>
-                        <label htmlFor='altPhone' >Alt. Phone</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor='altPhone' >Alt. Phone</label>
                         <input type='text' name='altPhone' value={detailsData.altPhone} onChange = {onDetailsChange} />
                     </div>
-                    <div>
-                        <label htmlFor='email'>Email</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor='email'>Email</label>
                         <input type='text' name='email' value={detailsData.email} onChange = {onDetailsChange} />
                     </div>
-                    <div>
-                        <label htmlFor='altEmail'>Alt. Email</label>
+                    <div className="form-group">
+                        <label className="label" htmlFor='altEmail'>Alt. Email</label>
                         <input type='text' name='altEmail' value={detailsData.altEmail} onChange = {onDetailsChange} />
                     </div>
-                    <div>
+                    <div className="form-group">
                         <input type='submit' value='Save' />  
                     </div>         
                 </form>

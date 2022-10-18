@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { sortAsc, sortDesc } from '../../helpers/functions';
 import { createGigObject, reverseGigObject, isCancelled, getInitialViewState } from '../../helpers/gigHelper';
+import BoolArrow from '../buttons/BoolArrow';
 import GigSubList from './GigSubList';
 import { GigViewSettings } from './GigViewSettings';
 
@@ -8,6 +9,7 @@ import { GigViewSettings } from './GigViewSettings';
 const GigList = ({gigs, futureGigs}) => {
   
   const [view, setView] = useState(getInitialViewState());
+  const [settingsVisible, setSettingsVisible] = useState(false);
   useEffect(() => {
     localStorage.setItem("gigView", JSON.stringify(view));
     console.log(view);
@@ -41,7 +43,9 @@ const GigList = ({gigs, futureGigs}) => {
 
   return (
     <div className = "all-gigs">
-      <GigViewSettings view={view} setView={setView} />
+      <BoolArrow value={settingsVisible} setValue={setSettingsVisible} />
+      {settingsVisible && <GigViewSettings view={view} setView={setView} />}
+      
       <div className="gig-list">
         
         <h1>Engagements</h1> 

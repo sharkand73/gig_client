@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import Request from  '../../helpers/request';
 import { emptyAct, dressCodeOptions } from '../../helpers/formHelper';
 import Loading from '../Loading';
@@ -13,6 +13,7 @@ const ActNew = ({ reloads, setReloads, skills, styles }) => {
     const [actData, setActData] = useState(emptyAct);
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [formProcessed, setFormProcessed] = useState(false);
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
     e.preventDefault();
@@ -96,7 +97,8 @@ const ActNew = ({ reloads, setReloads, skills, styles }) => {
                 { showStyles && <ActStyles actData={actData} setActData={setActData} styles={styles} onClose={onClose} />}
                 { showSkills && <ActSkills actData={actData} setActData={setActData} skills={skills} onClose={onClose} />}                
                 <div className="form-group">
-                    <input type='submit' value='Save' />  
+                    <input type='submit' value='Save' />
+                    <button onClick={() => navigate(`/acts`)}>Cancel</button>  
                 </div>         
             </form>
             {formSubmitted && <Loading />}

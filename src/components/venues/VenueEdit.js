@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import Request from  '../../helpers/request';
-import { emptyAddress, emptyVenue, countryOptions, venueOptions } from '../../helpers/formHelper';
+import { emptyAddress, countryOptions, venueOptions } from '../../helpers/formHelper';
 import Loading from '../Loading';
 
 
-const VenueNew = ({ reloads, setReloads }) => {
+const VenueEdit = ({ reloads, setReloads, venue }) => {
     
     emptyAddress.country = "Scotland";
 
-    const [addressData, setAddressData] = useState(emptyAddress);
-    const [venueData, setVenueData] = useState(emptyVenue);
+    const [addressData, setAddressData] = useState(venue.address);
+    const [venueData, setVenueData] = useState(venue);
     const [sendVenue, setSendVenue] = useState(false);
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [formProcessed, setFormProcessed] = useState(false);
@@ -30,7 +30,7 @@ const VenueNew = ({ reloads, setReloads }) => {
 
     const postAddress = (address) => {
         const request = new Request();
-        request.post('/addresses', address)
+        request.put(`/addresses/${venue.address.id}`, address)
         .then(res => res.json())
         .then((data) => {
             console.log('data back from db', data);
@@ -41,7 +41,7 @@ const VenueNew = ({ reloads, setReloads }) => {
 
     const postVenue = (venue) => {
         const request = new Request();
-        request.post('/venues', venue)
+        request.put(`/venues/${venue.id}`, venue)
         .then(res => res.json())
         .then((data) => {
             console.log('data back from db', data);
@@ -84,8 +84,7 @@ const VenueNew = ({ reloads, setReloads }) => {
                     </div>
                     <div className='form-group'>
                         <label className="label" htmlFor='venueType'>Type</label>
-                        <select name='venueType' onChange={onVenueTypeChange} defaultValue='' required>
-                            <option disabled value=''>Select Venue Type</option>
+                        <select name='venueType' onChange={onVenueTypeChange} value={venueData.venueType} required>
                             {venueOptions}
                         </select>
                     </div>
@@ -136,4 +135,4 @@ const VenueNew = ({ reloads, setReloads }) => {
     )
 }
 
-export default VenueNew;
+export default VenueEdit;
