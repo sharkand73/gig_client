@@ -10,6 +10,7 @@ export const processFee = (fee) => {
 }
 
 export const processGigClass = (gig, nextGig, useNextGig) => {
+    if (!gig || !nextGig) return 'ticket normal-gig';
     return (useNextGig && gig.id === nextGig.id ? 'ticket next-gig' : 'ticket normal-gig')
 }
 
